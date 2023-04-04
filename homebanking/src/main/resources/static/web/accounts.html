@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Account</title>
+</head>
+<body>
+    <header>
+        <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
+    </header>
+    <main id="app">
+        <h1>Cuentas Cliente</h1>
+        <div id="cuerpoCartas">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Account Holder</h5>
+                <p class="card-text"> Welcome! {{cliente}}</p>
+            </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Number of Accounts</h5>
+                <p class="card-text">{{conteoCuentas}}</p>
+            </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Total Balance</h5>
+                    <p class="card-text">$  {{totalBalance}}</p>
+                </div>
+            </div>
+        </div>
+        <div id="divTabla">
+            <table class="table table-striped">
+                <h3>Account List</h3>
+                <thead>
+                    <th>Account Number</th>
+                    <th>Balance</th>
+                    <th>Creation Date</th>
+                </thead>
+                <tbody>
+                <tr v-for="account of accounts">
+                    <td>{{account.number}}</td>
+                    <td>{{account.balance}}</td>
+                    <td>{{account.creationDate}}</td>
+                    <!-- <td>03/02/2023</td> -->
+
+
+                </tr>
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="accounts.js"></script>
+</body>
+</html>
