@@ -34,11 +34,11 @@ public class HomebankingApplication {
 			LocalDateTime date1 = LocalDateTime.now();
 			LocalDateTime date2 = LocalDateTime.now().plusDays(1);
 
-			Account account1 = new Account("123abc",5000.00,date1);
-			Account account2 = new Account("456lft",7500.00,date2);
+			Account account1 = new Account("VIN001",5000.00,date1);
+			Account account2 = new Account("VIN002",7500.00,date2);
 
-			Account account3 = new Account("789okm",9000.00,date1);
-			Account account4 = new Account("963ssw",12500.00,date2);
+			Account account3 = new Account("VIN003",9000.00,date1);
+			Account account4 = new Account("VIN004",12500.00,date2);
 
 			LocalDateTime dateTrans1 = LocalDateTime.now();
 
