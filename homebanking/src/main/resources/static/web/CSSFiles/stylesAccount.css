@@ -29,3 +29,24 @@ header{
     border-radius: 1rem;
     padding: 3px;
 }
+
+h1{
+    color: white;
+    margin-left: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+ background-color: rgb(165, 165, 165);
+}
+
+#divTabla{
+    margin-left: 11rem;
+    margin-right: 11rem;
+}
+
+.table{
+    background-color: white;
+}

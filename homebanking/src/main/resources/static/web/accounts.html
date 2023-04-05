@@ -44,13 +44,10 @@
                 </thead>
                 <tbody>
                 <tr v-for="account of accounts">
-                    <td>{{account.number}}</td>
+                    <td><a v-bind:href="'account.html?id='+account.id">{{account.number}}</a></td>
                     <td>{{account.balance}}</td>
                     <td>{{account.creationDate}}</td>
-                    <!-- <td>03/02/2023</td> -->
-
-
-                </tr>
+                    </tr>
                 </tbody>
                 </tbody>
             </table>
