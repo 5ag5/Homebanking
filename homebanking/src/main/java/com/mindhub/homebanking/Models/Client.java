@@ -12,7 +12,6 @@ import java.util.Set;
 public class Client {
 
 @Id
-
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 @GenericGenerator(name = "native", strategy = "native")
     private long id;

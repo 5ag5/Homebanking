@@ -2,14 +2,11 @@ package com.mindhub.homebanking.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -18,29 +15,30 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
 
-    private int id;
+    private Long id;
     private String number;
     private double balance;
     private LocalDateTime creationDate;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
     private Client client;
 
+    @OneToMany(mappedBy="account", fetch = FetchType.EAGER)
+    Set<Transaction> transactions = new HashSet<>();
+
     public Account(String number, double balance, LocalDateTime creationDate) {
         this.number = number;
         this.balance = balance;
         this.creationDate = creationDate;
-        this.client = client;
     }
 
     public Account() {}
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,6 +73,19 @@ public class Account {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public Set<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Set<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void addTransaction(Transaction transaction){
+        transaction.setAccount(this);
+        transactions.add(transaction);
     }
 
 }
