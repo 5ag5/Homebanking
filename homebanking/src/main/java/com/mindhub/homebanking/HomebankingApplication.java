@@ -13,16 +13,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.mindhub.homebanking.Models.TypeTransaction.CREDITO;
 import static com.mindhub.homebanking.Models.TypeTransaction.DEBITO;
 
 @SpringBootApplication
 public class HomebankingApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class);
+
 	}
 
 	@Bean
@@ -34,23 +36,28 @@ public class HomebankingApplication {
 			LocalDateTime date1 = LocalDateTime.now();
 			LocalDateTime date2 = LocalDateTime.now().plusDays(1);
 
-			Account account1 = new Account("VIN001",5000.00,date1);
-			Account account2 = new Account("VIN002",7500.00,date2);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+			String date1Tem = date1.format(formatter);
+			String date2Tem = date2.format(formatter);
 
-			Account account3 = new Account("VIN003",9000.00,date1);
-			Account account4 = new Account("VIN004",12500.00,date2);
+			LocalDateTime date1f = LocalDateTime.parse(date1Tem, formatter);
+			LocalDateTime date2f = LocalDateTime.parse(date2Tem, formatter);
 
-			LocalDateTime dateTrans1 = LocalDateTime.now();
+			Account account1 = new Account("VIN001",5000.00,date1f);
+			Account account2 = new Account("VIN002",7500.00,date2f);
 
-			Transaction transaction1 = new Transaction(TypeTransaction.DEBITO,565.67,"Compra de cerveza",dateTrans1);
-			Transaction transaction12 = new Transaction(TypeTransaction.DEBITO,325.52,"Compra de Tequila",dateTrans1);
-			Transaction transaction13 = new Transaction(TypeTransaction.CREDITO,1025.00,"Deposito Salario",dateTrans1);
-			Transaction transaction14 = new Transaction(TypeTransaction.DEBITO,125.13,"Compra de repuestos carro",dateTrans1);
+			Account account3 = new Account("VIN003",9000.00,date1f);
+			Account account4 = new Account("VIN004",12500.00,date2f);
 
-			Transaction transaction2 = new Transaction(DEBITO,1325.52,"Compra de cerveza",dateTrans1);
-			Transaction transaction22 = new Transaction(CREDITO,610.01,"Transferencias Novia",dateTrans1);
-			Transaction transaction23 = new Transaction(CREDITO,822.99,"Transferencia Internacional",dateTrans1);
-			Transaction transaction24 = new Transaction(CREDITO,57.47,"Devolucion Intereses",dateTrans1);
+			Transaction transaction1 = new Transaction(TypeTransaction.DEBITO,565.67,"Compra de cerveza",date1f);
+			Transaction transaction12 = new Transaction(TypeTransaction.DEBITO,325.52,"Compra de Tequila",date2f);
+			Transaction transaction13 = new Transaction(TypeTransaction.CREDITO,1025.00,"Deposito Salario",date1f);
+			Transaction transaction14 = new Transaction(TypeTransaction.DEBITO,125.13,"Compra de repuestos carro",date1f);
+
+			Transaction transaction2 = new Transaction(DEBITO,1325.52,"Compra de cerveza",date1f);
+			Transaction transaction22 = new Transaction(CREDITO,610.01,"Transferencias Novia",date1f);
+			Transaction transaction23 = new Transaction(CREDITO,822.99,"Transferencia Internacional",date2f);
+			Transaction transaction24 = new Transaction(CREDITO,57.47,"Devolucion Intereses",date1f);
 
 			cliente1.addAccount(account1);
 			cliente1.addAccount(account2);
@@ -84,6 +91,20 @@ public class HomebankingApplication {
 			TransactionRepository.save(transaction22);
 			TransactionRepository.save(transaction23);
 			TransactionRepository.save(transaction24);
+
+			account1.setBalance(account1.getBalance()-transaction1.getAmount());
+			account1.setBalance(account1.getBalance()-transaction12.getAmount());
+			account1.setBalance(account1.getBalance()+transaction13.getAmount());
+			account1.setBalance(account1.getBalance()-transaction14.getAmount());
+
+			Accountrepository.save(account1);
+
+			account2.setBalance(account2.getBalance()-transaction2.getAmount());
+			account2.setBalance(account2.getBalance()+transaction22.getAmount());
+			account2.setBalance(account2.getBalance()+transaction23.getAmount());
+			account2.setBalance(account2.getBalance()+transaction24.getAmount());
+
+			Accountrepository.save(account2);
 		};
 	}
 

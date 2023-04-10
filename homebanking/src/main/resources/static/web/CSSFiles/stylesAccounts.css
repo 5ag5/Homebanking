@@ -7,12 +7,18 @@
 body{
 
     background: linear-gradient( rgba(32, 32, 32, 0.72), rgba(32, 32, 32, 0.72  ) ), url(../imagenes/rascacielos.jpeg);
-
-    /*-webkit-filter: grayscale(1);
-    filter: gray;  IE6-9
-    filter: grayscale(1); */
     background-size: cover;
-    height: 100%; 
+}
+p{
+    margin-bottom: 0 !important;
+    padding-bottom: 1rem !important;
+}
+
+main{
+    min-height: 67vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1{
@@ -41,6 +47,13 @@ header{
     height: 10vh;
 }
 
+footer{
+    background-color:rgb(0,212,255);
+    /* height: 10vh; */
+    display: flex;
+    justify-content: space-around;
+}
+
 #iconoBan{
     /* object-fit: contain; */
     width: 20rem;
@@ -52,7 +65,7 @@ header{
 
 .table-striped>tbody>tr:nth-child(odd)>td,
 .table-striped>tbody>tr:nth-child(odd)>th {
- background-color: rgb(165, 165, 165);
+ background-color: lightgray
 }
 
 #divTabla{
@@ -69,4 +82,40 @@ header{
 
 .table{
     background-color: white;
+}
+
+
+.div5Footer{
+    display: flex;
+    justify-content: end;
+}
+
+ion-icon{
+    height: 2rem;
+    width: 2rem;
+}
+
+.logosRedes:hover{
+    color: white;
+    /* object-fit: contain;
+    height: 5rem;
+    width: 5rem;
+    margin: 1rem; */
+}
+
+.divFooter{
+    margin-bottom: 0 !important;
+}
+
+.botonAtras{
+    color: white;
+    background-color: rgb(9,65,121) ;
+    border-radius: 2rem;
+    position: sticky;
+}
+
+.botonClase{
+    display: flex;
+    justify-content: end;
+    align-content: end;
 }
