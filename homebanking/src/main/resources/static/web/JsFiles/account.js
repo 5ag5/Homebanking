@@ -28,6 +28,7 @@ const app = createApp({
 
                     this.cuenta = this.cuentas.find(cuenta => cuenta.id.toString()=== this.id)
                     this.transactions = this.cuenta.transactions
+                    this.transactions = this.transactions.sort((x,y) => y.id - x.id)
 
                     console.log(this.cuenta)
                     console.log(this.transactions)

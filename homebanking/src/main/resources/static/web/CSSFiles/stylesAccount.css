@@ -26,6 +26,7 @@ footer{
     /* height: 10vh; */
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 main{
@@ -57,8 +58,8 @@ h1{
 }
 
 #divTabla{
-    margin-left: 11rem;
-    margin-right: 11rem;
+    margin-left: 11%;
+    margin-right: 11%;
 }
 
 .table{
@@ -73,6 +74,7 @@ h1{
 ion-icon{
     height: 2rem;
     width: 2rem;
+    color: black;
 }
 
 .logosRedes:hover{
