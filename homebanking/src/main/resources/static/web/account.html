@@ -12,9 +12,32 @@
     <header>
         <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
     </header>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="#">Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Credit Cards</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Loans</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Digital Channels</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Support</a>
+        </li>
+        <li class="nav-item">
+            <div id="searchBar">
+                <input id="search1" type="search" placeholder="Enter to Search">
+                <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
+            </div>
+        </li>
+    </ul>
     <main id ="app">
         <h1>Transacciones Cuenta: {{numeroCuenta}}</h1>
-        <div id="divTabla">
+        <div id="divTabla" class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <th>ID</th>
@@ -30,6 +53,14 @@
                     <td v-bind:class="transaction.type==='DEBITO' ? 'transactionColor text-danger' : 'transactionColor text-success'">{{transaction.amount}}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total Amount</td>
+                    <td></td>
+                    <td></td>
+                    <td id="totalTransactionsAm">{{sumTransactions}}</td>
+                </tr>
+            </tfoot>
         </table>
         </div>
         <div class="botonClase">
@@ -38,27 +69,27 @@
     </main>
     <footer>
         <div class="divFooter">
-            <p>Search a Bank</p>
-            <p>Subscribe to especial promotions</p>
-            <p>Productos for Students</p>
-            <p>Comments about MindHub Brothers</p>
+            <a id="idFooter" href="#">Search a Bank</a>
+            <a id="idFooter" href="#">Subscribe to especial promotions</a>
+            <a id="idFooter" href="#">Productos for Students</a>
+            <a id="idFooter" href="#">Comments about MindHub Brothers</a>
         </div>
         <div class="divFooter">
             <h6>Complains</h6>
-            <p>Contact</p>
-            <p>Product delivery status</p>
+            <a id="idFooter" href="#">Contact</a>
+            <a id="idFooter" href="#">Product delivery status</a>
         </div>
         <div class="divFooter">
             <h6>About MindHub Brothers</h6>
-            <p>New Products</p>
-            <p>Work with us</p>
-            <p>Investors</p>
-            <p>Sustainability</p>
+            <a id="idFooter" href="#">New Products</a>
+            <a id="idFooter" href="#">Work with us</a>
+            <a id="idFooter" href="#">Investors</a>
+            <a id="idFooter" href="#">Sustainability</a>
         </div>
         <div class="divFooter">
             <h6>Join Us</h6>
-            <p>MindHub Brothers App</p>
-            <p>Subscribe your e-mail</p>
+            <a id="idFooter" href="#">MindHub Brothers App</a>
+            <a id="idFooter" href="#">Subscribe your e-mail</a>
         </div>
         <div class="div5Footer">
             <a href="https://www.instagram.com/"><ion-icon class="logosRedes" name="logo-instagram"></ion-icon></a>

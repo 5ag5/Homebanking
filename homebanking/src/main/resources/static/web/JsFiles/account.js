@@ -4,6 +4,7 @@ const app = createApp({
     data(){
         return {
             transactions: undefined,
+            sumTransactions: 0,
             cuentas: undefined,
             numeroCuenta: undefined,
             params: undefined,
@@ -12,25 +13,39 @@ const app = createApp({
     },
 
     created(){
+        this.params = new URLSearchParams(location.search)
+        this.id = this.params.get("id")
         this.getData();
     },
 
     methods:{
         async getData(){
-            axios.get('http://localhost:8080/api/accounts')
+            axios.get('http://localhost:8080/api/accounts/' + this.id)
             .then(elemento =>{
                     this.cuentas = elemento.data
-                    
-                    this.params = new URLSearchParams(location.search)
-                    this.id = this.params.get("id")
+
+                    //this.cuenta = this.cuentas.find(cuenta => cuenta.id.toString()=== this.id)
+                    this.transactions = this.cuentas.transactions
+                    this.transactions = this.transactions.sort((x,y) => y.id - x.id)
 
                     console.log(this.id)
+                    console.log(this.cuentas)
 
-                    this.cuenta = this.cuentas.find(cuenta => cuenta.id.toString()=== this.id)
-                    this.transactions = this.cuenta.transactions
+                    for(let elemento of this.transactions){
+                        console.log(elemento.amount)
+                    }
 
-                    console.log(this.cuenta)
-                    console.log(this.transactions)
+                    for(let elemento of this.transactions){
+                        if(elemento.type === "CREDITO"){
+                            this.sumTransactions = this.sumTransactions + elemento.amount
+                        }else{
+                            this.sumTransactions = this.sumTransactions - elemento.amount
+                        }
+                    }
+
+                    this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+
+                    console.log(this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' }))
 
                     this.getNumeroCuenta()
                     this.convertirADolares()
@@ -39,7 +54,7 @@ const app = createApp({
         },
 
         getNumeroCuenta(){
-            this.numeroCuenta = this.cuenta.number    
+            this.numeroCuenta = this.cuentas.number    
             console.log(this.numeroCuenta)
         },
 

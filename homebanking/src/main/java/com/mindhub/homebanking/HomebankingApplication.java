@@ -1,12 +1,7 @@
 package com.mindhub.homebanking;
 
-import com.mindhub.homebanking.Models.Account;
-import com.mindhub.homebanking.Models.Client;
-import com.mindhub.homebanking.Models.Transaction;
-import com.mindhub.homebanking.Models.TypeTransaction;
-import com.mindhub.homebanking.Repositories.AccountRepository;
-import com.mindhub.homebanking.Repositories.ClientRepository;
-import com.mindhub.homebanking.Repositories.TransactionRepository;
+import com.mindhub.homebanking.Models.*;
+import com.mindhub.homebanking.Repositories.*;
 import net.bytebuddy.asm.Advice;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static com.mindhub.homebanking.Models.TypeTransaction.CREDITO;
 import static com.mindhub.homebanking.Models.TypeTransaction.DEBITO;
@@ -28,10 +24,13 @@ public class HomebankingApplication {
 	}
 
 	@Bean
-	public CommandLineRunner initData(ClientRepository repository, AccountRepository Accountrepository, TransactionRepository TransactionRepository) {
+	public CommandLineRunner initData(ClientRepository repository, AccountRepository Accountrepository,
+									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
+									  ClientLoanRepository clientLoanRepository) {
 		return (args) -> {
 			Client cliente1 = new Client("Melba", "Morel", "meal@mindhub.com");
 			Client cliente2 = new Client("Diego", "Suarez", "diegoCorreo@mindhub.com");
+			Client cliente3 = new Client("Cristina","Correa","cristinacorreo14@mindhub.com");
 
 			LocalDateTime date1 = LocalDateTime.now();
 			LocalDateTime date2 = LocalDateTime.now().plusDays(1);
@@ -49,15 +48,40 @@ public class HomebankingApplication {
 			Account account3 = new Account("VIN003",9000.00,date1f);
 			Account account4 = new Account("VIN004",12500.00,date2f);
 
-			Transaction transaction1 = new Transaction(TypeTransaction.DEBITO,565.67,"Compra de cerveza",date1f);
-			Transaction transaction12 = new Transaction(TypeTransaction.DEBITO,325.52,"Compra de Tequila",date2f);
-			Transaction transaction13 = new Transaction(TypeTransaction.CREDITO,1025.00,"Deposito Salario",date1f);
-			Transaction transaction14 = new Transaction(TypeTransaction.DEBITO,125.13,"Compra de repuestos carro",date1f);
+			Transaction transaction1 = new Transaction(TypeTransaction.DEBITO,565.67,"beer purchase",date1f);
+			Transaction transaction12 = new Transaction(TypeTransaction.DEBITO,325.52,"tequila purchase",date2f);
+			Transaction transaction13 = new Transaction(TypeTransaction.CREDITO,1025.00,"Salary Deposit",date1f);
+			Transaction transaction14 = new Transaction(TypeTransaction.DEBITO,125.13,"Car parts purchase",date1f);
 
-			Transaction transaction2 = new Transaction(DEBITO,1325.52,"Compra de cerveza",date1f);
-			Transaction transaction22 = new Transaction(CREDITO,610.01,"Transferencias Novia",date1f);
-			Transaction transaction23 = new Transaction(CREDITO,822.99,"Transferencia Internacional",date2f);
-			Transaction transaction24 = new Transaction(CREDITO,57.47,"Devolucion Intereses",date1f);
+			Transaction transaction2 = new Transaction(DEBITO,1325.52,"beer purchase",date1f);
+			Transaction transaction22 = new Transaction(CREDITO,610.01,"Account 1234 transfer",date1f);
+			Transaction transaction23 = new Transaction(CREDITO,822.99,"International deposit",date2f);
+			Transaction transaction24 = new Transaction(CREDITO,57.47,"Interes earnead",date1f);
+
+			List<Integer> payments1 = List.of(12,24,36,48);
+			List<Integer> payments2 = List.of(6,12,24);
+			List<Integer> payments3 = List.of(6,12,24,36);
+
+			Loan hipotecario = new Loan("House Loan", 500000,payments1);
+			Loan personal = new Loan("Persona Loan",100000,payments2);
+			Loan automotriz = new Loan("Car Loan", 300000,payments3);
+
+			ClientLoan clientLoan1 = new ClientLoan(400000,60,"House Loan");
+			ClientLoan clientLoan11 = new ClientLoan(50000,12,"Persona Loan");
+
+			ClientLoan clientLoan2 = new ClientLoan(100000,24,"Persona Loan");
+			ClientLoan clientLoan21 = new ClientLoan(200000,36,"Car Loan");
+
+			cliente1.addLoan(clientLoan1);
+			cliente1.addLoan(clientLoan11);
+
+			cliente2.addLoan(clientLoan2);
+			cliente2.addLoan(clientLoan21);
+
+			hipotecario.addClientLoan(clientLoan1);
+			personal.addClientLoan(clientLoan11);
+			personal.addClientLoan(clientLoan2);
+			automotriz.addClientLoan(clientLoan21);
 
 			cliente1.addAccount(account1);
 			cliente1.addAccount(account2);
@@ -76,6 +100,7 @@ public class HomebankingApplication {
 			// save a couple of customers
 			repository.save(cliente1);
 			repository.save(cliente2);
+			repository.save(cliente3);
 
 			Accountrepository.save(account1);
 			Accountrepository.save(account2);
@@ -105,6 +130,16 @@ public class HomebankingApplication {
 			account2.setBalance(account2.getBalance()+transaction24.getAmount());
 
 			Accountrepository.save(account2);
+
+			loanRepository.save(hipotecario);
+			loanRepository.save(personal);
+			loanRepository.save(automotriz);
+
+			clientLoanRepository.save(clientLoan1);
+			clientLoanRepository.save(clientLoan11);
+			clientLoanRepository.save(clientLoan2);
+			clientLoanRepository.save(clientLoan21);
+
 		};
 	}
 
