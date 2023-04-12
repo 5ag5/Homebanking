@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class ClientDTO1 {
 
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,11 +21,11 @@ public class ClientDTO1 {
         this.accounts = client.getAccounts().stream().map(account -> new AccountDTO(account)).collect(Collectors.toSet());
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
