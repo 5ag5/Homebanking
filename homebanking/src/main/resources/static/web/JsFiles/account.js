@@ -23,30 +23,13 @@ const app = createApp({
             axios.get('http://localhost:8080/api/accounts/' + this.id)
             .then(elemento =>{
                     this.cuentas = elemento.data
-
-                    //this.cuenta = this.cuentas.find(cuenta => cuenta.id.toString()=== this.id)
                     this.transactions = this.cuentas.transactions
                     this.transactions = this.transactions.sort((x,y) => y.id - x.id)
 
                     console.log(this.id)
-                    console.log(this.cuentas)
+                    console.log(this.cuentas)   
 
-                    for(let elemento of this.transactions){
-                        console.log(elemento.amount)
-                    }
-
-                    for(let elemento of this.transactions){
-                        if(elemento.type === "CREDITO"){
-                            this.sumTransactions = this.sumTransactions + elemento.amount
-                        }else{
-                            this.sumTransactions = this.sumTransactions - elemento.amount
-                        }
-                    }
-
-                    this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
-
-                    console.log(this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' }))
-
+                    this.callSumTransactions()
                     this.getNumeroCuenta()
                     this.convertirADolares()
                 } 
@@ -66,6 +49,20 @@ const app = createApp({
                 indiceT = element.date.indexOf("T")
                 element.date = element.date.slice(0,indiceT) + " " +  element.date.slice(indiceT+1,element.date.length)
             })
+
+            this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+        },
+
+        callSumTransactions(){
+            for(let elemento of this.transactions){
+                if(elemento.type === "CREDITO"){
+                    this.sumTransactions = this.sumTransactions + elemento.amount
+                }else{
+                    this.sumTransactions = this.sumTransactions - elemento.amount
+                }
+            }
+
+            this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
         }
 

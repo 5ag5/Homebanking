@@ -13,6 +13,7 @@ const app = createApp({
         }
     },
     created(){
+
         this.getData()
     },
 
@@ -24,11 +25,11 @@ const app = createApp({
                     this.accounts = elemento.data.accounts
                     this.clientes = elemento.data;
                     this.clientLoans = elemento.data.clientLoans
-                    console.log( this.accounts)
+                    console.log( this.clientes)
                     console.log( this.clientLoans)
 
-
-                    this.valoreCards()
+                    this.valueCards()
+                    this.clientName()
                     
             })
             }catch{
@@ -36,10 +37,9 @@ const app = createApp({
             }
         },
 
-        valoreCards(){
+        valueCards(){
             let totalBalanceTemp =0
             let totalBalanceTempLoans =0
-
 
             for(let elemento of this.accounts){
                 totalBalanceTemp = totalBalanceTemp + elemento.balance;
@@ -53,11 +53,9 @@ const app = createApp({
 
             this.totalBalance = totalBalanceTemp.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
-            this.cliente = this.clientes.firstName + " " + this.clientes.lastName
             console.log(this.totalBalanceLoans)   
 
             this.countingAccounts= this.accounts.length;
-            this.co
 
             let indiceT = 0;
             this.accounts.forEach(element => {
@@ -71,7 +69,12 @@ const app = createApp({
                 loan.amount = loan.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
             })
 
+
         },
+
+        clientName(){
+            this.cliente = this.clientes.firstName + " " + this.clientes.lastName
+        }
 
     },
 

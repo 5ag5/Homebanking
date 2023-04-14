@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,7 +27,7 @@ public class HomebankingApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository repository, AccountRepository Accountrepository,
 									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository) {
+									  ClientLoanRepository clientLoanRepository, CreditCardRepository creditCardRepository) {
 		return (args) -> {
 			Client cliente1 = new Client("Melba", "Morel", "meal@mindhub.com");
 			Client cliente2 = new Client("Diego", "Suarez", "diegoCorreo@mindhub.com");
@@ -72,6 +73,17 @@ public class HomebankingApplication {
 			ClientLoan clientLoan2 = new ClientLoan(100000,24,"Persona Loan");
 			ClientLoan clientLoan21 = new ClientLoan(200000,36,"Car Loan");
 
+			LocalDate date1LC = LocalDate.now();
+
+			CreditCard card1 = new CreditCard("Melba", "Morel",TypeCard.DEBIT,Color.GOLD,
+					"4521-7895-5641-2585",874,date1LC.plusYears(5),date1LC);
+
+			CreditCard card2 = new CreditCard("Melba", "Morel",TypeCard.CREDIT, Color.TITANIUM,
+					"7894-5613-1147-9512",554,date1LC.plusYears(5),date1LC);
+
+			CreditCard card3 = new CreditCard("Diego","Suarez", TypeCard.CREDIT, Color.SILVER,
+					"8525-9856-2237-1239",635,date1LC.plusYears(5),date1LC);
+
 			cliente1.addLoan(clientLoan1);
 			cliente1.addLoan(clientLoan11);
 
@@ -97,6 +109,11 @@ public class HomebankingApplication {
 			account2.addTransaction(transaction22);
 			account2.addTransaction(transaction23);
 			account2.addTransaction(transaction24);
+
+			cliente1.addCreditCard(card1);
+			cliente1.addCreditCard(card2);
+			cliente2.addCreditCard(card3);
+
 			// save a couple of customers
 			repository.save(cliente1);
 			repository.save(cliente2);
@@ -139,6 +156,10 @@ public class HomebankingApplication {
 			clientLoanRepository.save(clientLoan11);
 			clientLoanRepository.save(clientLoan2);
 			clientLoanRepository.save(clientLoan21);
+
+			creditCardRepository.save(card1);
+			creditCardRepository.save(card2);
+			creditCardRepository.save(card3);
 
 		};
 	}

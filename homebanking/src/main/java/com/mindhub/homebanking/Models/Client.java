@@ -12,23 +12,28 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
-
 @Entity
 public class Client {
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-@GenericGenerator(name = "native", strategy = "native")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private String firstName;
     private String lastName;
     private String email;
 
-    @OneToMany(mappedBy ="client",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     Set<ClientLoan> clientLoans = new HashSet<>();
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    Set<CreditCard> creditCards = new HashSet<>();
+
+    public Client() {
+    }
 
     public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -36,6 +41,13 @@ public class Client {
         this.email = email;
     }
 
+    public Set<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+
+    public void setCreditCards(Set<CreditCard> creditCards) {
+        this.creditCards = creditCards;
+    }
 
     public long getIdClient() {
         return id;
@@ -53,8 +65,7 @@ public class Client {
         this.accounts = accounts;
     }
 
-    public Client() {
-    }
+
     public long getId() {
         return id;
     }
@@ -87,16 +98,6 @@ public class Client {
         this.email = email;
     }
 
-    public void addAccount(Account account){
-        account.setClient(this);
-        accounts.add(account);
-    }
-
-    public void addLoan(ClientLoan clientLoan){
-        clientLoan.setClient(this);
-        clientLoans.add(clientLoan);
-    }
-
     public Set<ClientLoan> getClientLoans() {
         return clientLoans;
     }
@@ -105,4 +106,20 @@ public class Client {
         this.clientLoans = clientLoans;
     }
 
+    public void addAccount(Account account) {
+        account.setClient(this);
+        accounts.add(account);
+    }
+
+    public void addLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
+
+    public void addCreditCard(CreditCard creditcard) {
+        creditcard.setClient(this);
+        creditCards.add(creditcard);
+    }
 }
+
+
