@@ -140,6 +140,8 @@ ion-icon{
 .botonClase{
     display: flex;
     justify-content: end;
+    position: sticky;
+    bottom: 0;
 }
 
 .btn{
