@@ -1,6 +1,6 @@
 package com.mindhub.homebanking.Models;
 
-public enum Color {
+public enum CardColor {
     GOLD,
     SILVER,
     TITANIUM;

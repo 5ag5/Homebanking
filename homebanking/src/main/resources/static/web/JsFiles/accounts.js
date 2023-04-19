@@ -9,7 +9,8 @@ const app = createApp({
             clientes: [],
             cliente: undefined,
             countingAccounts: 0,
-            clientLoans: []
+            clientLoans: [],
+            identificador: 0
         }
     },
     created(){
@@ -25,8 +26,11 @@ const app = createApp({
                     this.accounts = elemento.data.accounts
                     this.clientes = elemento.data;
                     this.clientLoans = elemento.data.clientLoans
-                    console.log( this.clientes)
-                    console.log( this.clientLoans)
+                    this.identificador = elemento.data.id
+                    console.log(this.clientes)
+                    console.log(this.clientLoans)
+                    console.log(this.identificador)
+
 
                     this.valueCards()
                     this.clientName()

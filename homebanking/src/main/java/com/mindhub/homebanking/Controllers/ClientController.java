@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @RestController
 public class ClientController {
 
-    ClientDTO1 VARIABLE;
     @Autowired
     private ClientRepository clientRepository;
 
