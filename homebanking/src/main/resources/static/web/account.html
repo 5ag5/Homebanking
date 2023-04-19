@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Account</title>
 </head>
-<body>
+<body id ="app">
     <header>
         <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
     </header>
@@ -24,16 +24,19 @@
             <a class="nav-link" href="#">Loans</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Digital Channels</a>
+            <a class="nav-link" href="#">Support</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Support</a>
+            <a class="nav-link" href="./index.html">Home</a>
         </li>
         <li class="nav-item">
             <div id="searchBar">
                 <input id="search1" type="search" placeholder="Enter to Search">
                 <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
             </div>
+        </li>
+        <li class="nav-item">
+            <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
         </li>
     </ul>
     <main id ="app">
@@ -56,16 +59,13 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td>Total Amount</td>
+                    <td>Net Transacionts</td>
                     <td></td>
                     <td></td>
                     <td id="totalTransactionsAm">{{sumTransactions}}</td>
                 </tr>
             </tfoot>
         </table>
-        </div>
-        <div class="botonClase">
-            <a href="http://localhost:8080/web/accounts.html"><ion-icon class ="botonAtras" name="arrow-back-outline">ESTO ES UN ICONO</ion-icon></a>
         </div>
     </main>
     <footer>

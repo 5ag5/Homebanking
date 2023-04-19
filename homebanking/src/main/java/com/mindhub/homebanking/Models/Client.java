@@ -1,16 +1,12 @@
 package com.mindhub.homebanking.Models;
 
-import net.minidev.json.annotate.JsonIgnore;
-import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Client {
@@ -18,35 +14,39 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
+
     private long id;
     private String firstName;
     private String lastName;
     private String email;
+    private String password;
+
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    Set<Account> accounts = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    Set<ClientLoan> clientLoans = new HashSet<>();
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-    Set<CreditCard> creditCards = new HashSet<>();
+    private Set<Card> cards = new HashSet<>();
 
     public Client() {
     }
 
-    public Client(String firstName, String lastName, String email) {
+        public Client(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
     }
 
-    public Set<CreditCard> getCreditCards() {
-        return creditCards;
+    public Set<Card> getCreditCards() {
+        return cards;
     }
 
-    public void setCreditCards(Set<CreditCard> creditCards) {
-        this.creditCards = creditCards;
+    public void setCreditCards(Set<Card> cards) {
+        this.cards = cards;
     }
 
     public long getIdClient() {
@@ -65,13 +65,8 @@ public class Client {
         this.accounts = accounts;
     }
 
-
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -106,6 +101,15 @@ public class Client {
         this.clientLoans = clientLoans;
     }
 
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void addAccount(Account account) {
         account.setClient(this);
         accounts.add(account);
@@ -116,9 +120,9 @@ public class Client {
         clientLoans.add(clientLoan);
     }
 
-    public void addCreditCard(CreditCard creditcard) {
-        creditcard.setClient(this);
-        creditCards.add(creditcard);
+    public void addCard(Card card) {
+        card.setClient(this);
+        cards.add(card);
     }
 }
 

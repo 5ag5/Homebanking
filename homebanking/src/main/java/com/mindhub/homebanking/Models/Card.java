@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class CreditCard {
+public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -17,8 +17,8 @@ public class CreditCard {
     private String firstName;
     private String lastName;
     private String cardHolder;
-    private TypeCard type;
-    private Color color;
+    private CardType type;
+    private CardColor cardColor;
     private String number;
     private int cvv;
     private LocalDate thruDate;
@@ -28,14 +28,14 @@ public class CreditCard {
     @JoinColumn(name="CreditCard_id")
     private Client client;
 
-    public CreditCard() {}
+    public Card() {}
 
-    public CreditCard(String firstName, String lastName, TypeCard type, Color color, String number, int cvv,
-                      LocalDate thruDate, LocalDate fromDate) {
+    public Card(String firstName, String lastName, CardType type, CardColor cardColor, String number, int cvv,
+                LocalDate thruDate, LocalDate fromDate) {
         this.id = id;
         this.cardHolder = firstName + lastName;
         this.type = type;
-        this.color = color;
+        this.cardColor = cardColor;
         this.number = number;
         this.cvv = cvv;
         this.thruDate = thruDate;
@@ -58,20 +58,20 @@ public class CreditCard {
         this.cardHolder = cardHolder;
     }
 
-    public TypeCard getType() {
+    public CardType getType() {
         return type;
     }
 
-    public void setType(TypeCard type) {
+    public void setType(CardType type) {
         this.type = type;
     }
 
-    public Color getColor() {
-        return color;
+    public CardColor getColor() {
+        return cardColor;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(CardColor cardColor) {
+        this.cardColor = cardColor;
     }
 
     public String getNumber() {

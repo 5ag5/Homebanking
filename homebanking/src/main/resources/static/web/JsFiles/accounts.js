@@ -9,7 +9,8 @@ const app = createApp({
             clientes: [],
             cliente: undefined,
             countingAccounts: 0,
-            clientLoans: []
+            clientLoans: [],
+            identificador: 0
         }
     },
     created(){
@@ -20,13 +21,16 @@ const app = createApp({
     methods: {
         async getData(){
             try{
-                axios.get('http://localhost:8080/api/clients/1')
+                axios.get('http://localhost:8080/api/clients/current')
                 .then(elemento =>{
                     this.accounts = elemento.data.accounts
                     this.clientes = elemento.data;
                     this.clientLoans = elemento.data.clientLoans
-                    console.log( this.clientes)
-                    console.log( this.clientLoans)
+                    this.identificador = elemento.data.id
+                    console.log(this.clientes)
+                    console.log(this.clientLoans)
+                    console.log(this.identificador)
+
 
                     this.valueCards()
                     this.clientName()
@@ -74,8 +78,20 @@ const app = createApp({
 
         clientName(){
             this.cliente = this.clientes.firstName + " " + this.clientes.lastName
-        }
+        },
 
+        logOut(){
+            console.log("funciona")
+            axios.post('/api/logout').then(response => {
+                console.log('signed out!!!')
+                window.location.href='/web/index.html'   
+            })
+            .catch(err => console.log(err))
+        },
+
+        prueba(){
+            console.log('Esto es una prueba que funciona')
+        }
     },
 
     computed: {

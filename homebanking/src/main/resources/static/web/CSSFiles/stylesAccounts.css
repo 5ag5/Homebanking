@@ -36,7 +36,7 @@ h3{
 }
 
 div{
-    margin: 2rem;
+    margin: 1rem;
 }
 
 td, th{
@@ -95,9 +95,11 @@ footer{
 #cuerpoCartas{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     flex-wrap: wrap;
     position: relative;
+    margin-left: 11%;
+    margin-right: 11%;
 }
 
 .card{
@@ -133,10 +135,20 @@ ion-icon{
     margin: 1rem;
 }
 
-.botonAtras{
+.botonLogOut{
+    color: white;
+    /* background-color: rgb(9,65,121) ;
+    border-radius: 2rem;
+    padding: 10px; */
+}
+
+.buttonUp{
+    position: sticky;
+    bottom:0;
     color: white;
     background-color: rgb(9,65,121) ;
     border-radius: 2rem;
+    padding: 10px;
 }
 
 .botonClase{
@@ -144,7 +156,8 @@ ion-icon{
     justify-content: end;
     align-content: end;
     position: sticky;
-    bottom: 0;
+    bottom: 5px;
+    margin: 0;
 }
 
 .divFooter{

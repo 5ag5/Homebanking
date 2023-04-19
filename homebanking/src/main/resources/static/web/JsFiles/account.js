@@ -64,9 +64,16 @@ const app = createApp({
 
             this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
 
+        },
+
+        logOut(){
+            console.log("funciona")
+            axios.post('/api/logout').then(response => {
+                console.log('signed out!!!')
+                window.location.href='/web/index.html'   
+            })
+            .catch(err => console.log(err))
         }
-
-
     },
 
 })

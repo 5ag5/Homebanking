@@ -15,9 +15,9 @@ const app = createApp( {
     methods: {
         async getData(){
             try{
-            axios.get('http://localhost:8080/rest/clients')
+            axios.get('http://localhost:8080/clients')
             .then(elemento => {
-                this.clients=elemento.data._embedded.clients    
+                this.clients=elemento.data._embedded.clients
                 console.log(elemento.data._embedded.clients)
                 console.log("este funciona")
             })
@@ -28,12 +28,8 @@ const app = createApp( {
 
         async addClient(){
             let variableNombre = this.firstNam
-            let variableApellido = this.lastNam
+            let variableApellido = this.firstNam
             let variableCorreo = this.emailInp
-
-            console.log(variableNombre)
-            console.log(variableApellido)
-            console.log(variableCorreo)
 
             if((variableNombre.length && variableApellido.length && variableCorreo.length) >1){
                 this.postClient(variableNombre, variableApellido, variableCorreo)
@@ -41,25 +37,17 @@ const app = createApp( {
                 console.log("No se ejecuta proceso");
             }
         },
+
             postClient(firstName, lastName, email){
             axios({
                 method:'post',
-                url:'http://localhost:8080/rest/clients',
+                url:'http://localhost:8080/clients',
                 data:{
                     firstName: firstName,
                     lastName: lastName,
                     email: email
                 }
             });
-        },
-
-        logOut(){
-            console.log("funciona")
-            axios.post('/api/logout').then(response => {
-                console.log('signed out!!!')
-                window.location.href='/web/index.html'   
-            })
-            .catch(err => console.log(err))
         }
 
     },
@@ -71,5 +59,3 @@ const app = createApp( {
 })
 
 app.mount('#app')
-
-

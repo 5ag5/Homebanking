@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link rel="stylesheet" href="./CSSFiles/indexStyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">    <link rel="stylesheet" href="./CSSFiles/indexStyles.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>Client Credit Cards</title>
 </head>
@@ -15,13 +15,13 @@
     </header>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Accounts</a>
+            <a class="nav-link" aria-current="page" href="#">Products</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Credit Cards</a>
+            <a class="nav-link" href="#">Find a bank</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Loans</a>
+            <a class="nav-link" href="#">News</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Digital Channels</a>
@@ -36,21 +36,40 @@
             </div>
         </li>
     </ul>
-    <main>
+    <main id="app">
         <h1>WELCOME TO MINDHUB BROTHERS</h1>
-        <form class = "formularioLogin" action="formularioLogIn">
+
+        <form class = "formularioLogin" @submit.prevent="postUsuario"> 
+            <div class="divFormLogIn">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="usuario" required>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="divFormLogIn">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" v-model="contrasena" required>
+            </div>
+            <div class="divFormLogIn">
+                <button type="submit" class="btn btn-primary" value="log In">Submit</button>
+            </div>
+            <fieldset class="fieldset2">
+                <a class="loginUsuariosAlternos" href="manager.html">Login as Manager</a>
+                <a class="loginUsuariosAlternos" href="./newUser.html">Register as New User</a>
+            </fieldset>
+        </form>
+        <!-- <form class = "formularioLogin" action="formularioLogIn">
             <fieldset>
                 <label for="">Username</label>
-                <input class="inputLogIn" type="text">
+                <input class="inputLogIn" type="text" v-model="usuario" required>
                 <label for="">Password</label>
-                <input class="inputLogIn" type="text">
-                <a href="./accounts.html"><input class= "loginButton" type="button" value="log In"></a>
+                <input class="inputLogIn" type="password" v-model="contrasena" required>
+                <input v-on:click="postUsuario" class= "loginButton" type="button" value="log In">
             </fieldset>
             <fieldset class="fieldset2">
                 <a class="loginUsuariosAlternos" href="manager.html">Login as Manager</a>
-                <a class="loginUsuariosAlternos" href="#">Login as New User</a>
+                <a class="loginUsuariosAlternos" href="./newUser.html">Login as New User</a>
             </fieldset>
-        </form>
+        </form> -->
     </main>
     <footer>
         <div class="divFooter">
@@ -85,10 +104,11 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js" integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="./JsFiles/accounts.js"></script>
+    <script src="./JsFiles/index.js"></script>
 </body>
 </html>

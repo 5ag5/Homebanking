@@ -2,13 +2,15 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.Models.*;
 import com.mindhub.homebanking.Repositories.*;
-import net.bytebuddy.asm.Advice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +21,9 @@ import static com.mindhub.homebanking.Models.TypeTransaction.DEBITO;
 
 @SpringBootApplication
 public class HomebankingApplication {
+
+	@Autowired
+	private PasswordEncoder passwordEnconder;
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class);
 
@@ -27,11 +32,14 @@ public class HomebankingApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository repository, AccountRepository Accountrepository,
 									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
-									  ClientLoanRepository clientLoanRepository, CreditCardRepository creditCardRepository) {
+									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return (args) -> {
-			Client cliente1 = new Client("Melba", "Morel", "meal@mindhub.com");
-			Client cliente2 = new Client("Diego", "Suarez", "diegoCorreo@mindhub.com");
-			Client cliente3 = new Client("Cristina","Correa","cristinacorreo14@mindhub.com");
+			User admin = new User("admin@email.com",passwordEnconder.encode("admin1234"),
+					AuthorityUtils.createAuthorityList("ADMIN"));
+
+			Client cliente1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEnconder.encode("melba"));
+			Client cliente2 = new Client("Diego", "Suarez", "diegoCorreo@mindhub.com",passwordEnconder.encode("3EDC4RFV"));
+			Client cliente3 = new Client("Cristina","Correa","cristinacorreo14@mindhub.com",passwordEnconder.encode("5TGB6YHN"));
 
 			LocalDateTime date1 = LocalDateTime.now();
 			LocalDateTime date2 = LocalDateTime.now().plusDays(1);
@@ -75,13 +83,13 @@ public class HomebankingApplication {
 
 			LocalDate date1LC = LocalDate.now();
 
-			CreditCard card1 = new CreditCard("Melba", "Morel",TypeCard.DEBIT,Color.GOLD,
+			Card card1 = new Card("Melba", "Morel", CardType.DEBIT, CardColor.GOLD,
 					"4521-7895-5641-2585",874,date1LC.plusYears(5),date1LC);
 
-			CreditCard card2 = new CreditCard("Melba", "Morel",TypeCard.CREDIT, Color.TITANIUM,
+			Card card2 = new Card("Melba", "Morel", CardType.CREDIT, CardColor.TITANIUM,
 					"7894-5613-1147-9512",554,date1LC.plusYears(5),date1LC);
 
-			CreditCard card3 = new CreditCard("Diego","Suarez", TypeCard.CREDIT, Color.SILVER,
+			Card card3 = new Card("Diego","Suarez", CardType.CREDIT, CardColor.SILVER,
 					"8525-9856-2237-1239",635,date1LC.plusYears(5),date1LC);
 
 			cliente1.addLoan(clientLoan1);
@@ -110,9 +118,9 @@ public class HomebankingApplication {
 			account2.addTransaction(transaction23);
 			account2.addTransaction(transaction24);
 
-			cliente1.addCreditCard(card1);
-			cliente1.addCreditCard(card2);
-			cliente2.addCreditCard(card3);
+			cliente1.addCard(card1);
+			cliente1.addCard(card2);
+			cliente2.addCard(card3);
 
 			// save a couple of customers
 			repository.save(cliente1);
@@ -157,9 +165,9 @@ public class HomebankingApplication {
 			clientLoanRepository.save(clientLoan2);
 			clientLoanRepository.save(clientLoan21);
 
-			creditCardRepository.save(card1);
-			creditCardRepository.save(card2);
-			creditCardRepository.save(card3);
+			cardRepository.save(card1);
+			cardRepository.save(card2);
+			cardRepository.save(card3);
 
 		};
 	}

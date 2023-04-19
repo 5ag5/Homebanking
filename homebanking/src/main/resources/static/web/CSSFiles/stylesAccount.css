@@ -104,19 +104,20 @@ ion-icon{
     width: 5rem;
     margin: 1rem; */
 }
-.botonAtras{
+.botonLogOut{
     color: white;
     position: sticky;
-    align-content: end;
-    background-color: rgb(9,65,121) ;
-    border-radius: 2rem;
+    /* background-color: rgb(9,65,121) ;
+    border-radius: 2rem; */
+    /* padding: 10px; */
 }
 
 .botonClase{
     display: flex;
     justify-content: end;
+    align-content: end;
     position: sticky;
-    bottom: 0;
+    top: 45px;
 }
 
 .divFooter{

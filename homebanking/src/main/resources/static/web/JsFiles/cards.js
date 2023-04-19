@@ -3,20 +3,82 @@ const {createApp} = Vue
 const app = createApp({
     data(){
         return {
-            datos:undefined
+            datos:undefined,
+            params: undefined,
+            id: undefined,
+            nombre: undefined,
+            tarjetas: [],
+            tarjetaDebito: [], 
+            tarjetaCredito: [],
+            numeroTarjetaDebito: [],
+            numeroTarjetaCredito: []
+
         }
     },
 
     created(){
+        this.params = new URLSearchParams(location.search);
+        this.id = this.params.get("id");
         this.getData()
     },
 
     methods:{
         async getData(){
-            axios.get('http://localhost:8080/api/creditCards').then(elemento => {
+            axios.get('http://localhost:8080/api/clients/current')
+            .then(elemento => {
                 this.datos = elemento
-                console.log(this.datos)
+                this.nombre = elemento.data.firstName + " " + elemento.data.lastName
+                this.tarjetas = elemento.data.cards
+                
+                // console.log(this.datos)
+                // console.log(this.nombre)
+                // console.log(this.tarjetas)
+
+                //this.changeDatoFormat()
+                this.datosTarjeta()
+                console.log(this.tarjetaDebito)
+                console.log(this.tarjetaCredito)
+
+                // if(this.tarjetaCredito === undefined){
+                //     console.log(true)
+                // }
+                this.splitDebitCardNumber()
+                // console.log(this.numeroTarjetaDebito)
+
+                console.log(this.tarjetas)
             })
+        },
+
+        datosTarjeta(){
+            for(elemento of this.tarjetas){
+                if(elemento.type === "DEBIT"){
+                    this.tarjetaDebito.push(elemento)
+                }else{
+                    this.tarjetaCredito.push(elemento)
+                }
+            }
+        },
+
+        splitDebitCardNumber(){
+            this.numeroTarjetaDebito = this.tarjetaDebito[0].number.split("-")
+            this.numeroTarjetaCredito = this.tarjetaCredito[0].number.split("-")
+        },
+
+        changeDatoFormat(){
+            this.tarjetas.forEach(element => {
+                element.number = element.number.replaceAll("-"," ")
+                element.thruDate = element.thruDate.substring(0,7)
+                console.log(element.thruDate.substring(0,7))
+            });
+        },
+
+        logOut(){
+            console.log("funciona")
+            axios.post('/api/logout').then(response => {
+                console.log('signed out!!!')
+                window.location.href='/web/index.html'   
+            })
+            .catch(err => console.log(err))
         },
     },
 })
