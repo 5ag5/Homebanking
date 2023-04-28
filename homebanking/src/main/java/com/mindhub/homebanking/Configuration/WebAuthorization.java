@@ -25,14 +25,18 @@ public class WebAuthorization {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                 .antMatchers("/web/manager.html").hasAuthority("ADMIN")
                 .antMatchers("/web/index.html").permitAll()
+                .antMatchers("/web/newUser.html").permitAll()
                 .antMatchers("/web/accounts.html").hasAuthority("CLIENT")
                 .antMatchers("/web/account.html").hasAuthority("CLIENT")
                 .antMatchers("/web/cards.html").hasAuthority("CLIENT")
+                .antMatchers("/web/create-cards.html").hasAuthority("CLIENT")
                 .antMatchers("/CSSFiles/**").permitAll()
                 .antMatchers("/imagenes/**").permitAll()
                 .antMatchers("/JsFiles/**").permitAll()
                 .antMatchers("/api/login").permitAll()
-                .antMatchers("/api/logout").permitAll()
+                .antMatchers("/api/clients/current/accounts").permitAll()
+                .antMatchers("/api/clients/current").hasAuthority("CLIENT")
+
                 .antMatchers(HttpMethod.POST, "/clients").permitAll()
                 .antMatchers(HttpMethod.GET, "/clients").hasAuthority("ADMIN");
 
@@ -40,7 +44,7 @@ public class WebAuthorization {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginPage("/api/login");
-        http.logout().logoutUrl("/api/logout");
+        http.logout().logoutUrl("/api/logout").deleteCookies("JSESSIONID");
         // turn off checking for CSRF tokens
         http.csrf().disable();
         //disabling frameOptions so h2-console can be accessed

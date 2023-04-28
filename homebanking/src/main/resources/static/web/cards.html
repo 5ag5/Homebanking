@@ -18,7 +18,7 @@
             <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Credit Cards</a>
+            <a id="orderNewCardAlert" class="nav-link" href="./create-cards.html">Order New Cards</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Products</a>
@@ -42,130 +42,126 @@
     <main id="app">
     <h1>{{nombre}} Cards</h1>
     <div class="divPrincipalCards">
-
-    <!-- <div id="divTarjetas2">   -->
-    <template v-if="tarjetaDebito.length > 0" v-for="tarjeta of tarjetaDebito">
-        <div class="container1">
-            <div class="card1">
-                <h2>Debit Card</h2>
-                <div class="card1-inner">
-                    <div class="front" v-bind:class="tarjeta.color">
-                        <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img" alt="map-pic">
-                        <div class="row1">
-                            <img id="imgLogoChip" src="https://i.ibb.co/G9pDnYJ/chip.png" alt="chip-pic">
-                            <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
-                        </div>
-                        <div id="numeroTarjetaDIV" class="row1 card1-no">
-                            <p v-for="numero of numeroTarjetaDebito">{{numero}}</p>
-                        </div>
-                        <div class="row1 card1-holder">
-                            <p id="Pcards">CARD HOLDER</p>
-                            <p id="Pcards">VALID TILL</p>
-                        </div>
-                        <div class="row1 name">
-                            <p>{{tarjeta.cardHolder}}</p>
-                            <p>{{tarjeta.thruDate}}</p>
-                        </div>
-                    </div>
-                    <div class="back" v-bind:class="tarjeta.color">
-                        <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img">
-                        <div class="bar"></div>
-                        <div class="row1 card1-cvv">
-                            <div id="cardBackSignature">
-                                <img src="https://i.ibb.co/S6JG8px/pattern.png">
+        <div id="divTarjetas1">
+            <h2>Debit Card</h2>
+            <template v-if="tarjetaDebito.length > 0" v-for="tarjeta of tarjetaDebito">
+                <div class="container1">
+                    <div class="card1">
+                        <div class="card1-inner">
+                            <div class="front" v-bind:class="tarjeta.color">
+                                <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img" alt="map-pic">
+                                <div class="row1">
+                                    <img id="imgLogoChip" src="https://i.ibb.co/G9pDnYJ/chip.png" alt="chip-pic">
+                                    <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
+                                </div>
+                                <div id="numeroTarjetaDIV" class="row1 card1-no">
+                                    <p v-for="numero of numeroTarjetaDebito">{{numero}}</p>
+                                </div>
+                                <div class="row1 card1-holder">
+                                    <p id="Pcards">CARD HOLDER</p>
+                                    <p id="Pcards">VALID TILL</p>
+                                </div>
+                                <div class="row1 name">
+                                    <p>{{tarjeta.cardHolder}}</p>
+                                    <p>{{tarjeta.thruDate}}</p>
+                                </div>
                             </div>
-                            <p>{{tarjeta.cvv}}</p>
-                        </div>
-                        <div class="row1 card1-text">
-                            <p>AUTHORIZED SIGNATURE/NOT VALID UNLES SIGNED/VALIDO SOLAMENTE CON FIRMA AUTORIZADA</p>
-                        </div>
-                        <div class="row1 signature1">
-                            <p>CUSTOMER SIGNATURE</p>
-                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                            <div class="back" v-bind:class="tarjeta.color">
+                                <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img">
+                                <div class="bar"></div>
+                                <div class="row1 card1-cvv">
+                                    <div id="cardBackSignature">
+                                        <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                    </div>
+                                    <p>{{tarjeta.cvv}}</p>
+                                </div>
+                                <div class="row1 card1-text">
+                                    <p>AUTHORIZED SIGNATURE/NOT VALID UNLES SIGNED/VALIDO SOLAMENTE CON FIRMA AUTORIZADA</p>
+                                </div>
+                                <div class="row1 signature1">
+                                    <p>CUSTOMER SIGNATURE</p>
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </template>
-    <template v-else-if="tarjetaDebito.length === 0">
-        <!-- <h1>DEBIT CARD NOT AVAILABLE</h1> -->
-        <div id="noCardMessageDebit" class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Important Message</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary">Dear Client</h6>
-              <p class="card-text">You don't have any debit cards, please contact us
-                for more information
-              </p>
-            </div>
-        </div>
-    </template>
-    <!-- </div>
-
-    <div> -->
-    <template v-if="tarjetaCredito.length > 0" v-for="tarjeta of tarjetaCredito">
-        <div class="container1">
-            <div class="card1">
-                <h2>Credit Card</h2>
-                <div class="card1-inner">
-                    <div class="front2" v-bind:class="tarjeta.color">
-                        <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img" alt="map-pic">
-                        <div class="row1">
-                            <img id="imgLogoChip" src="https://i.ibb.co/G9pDnYJ/chip.png" alt="chip-pic">
-                            <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
-                        </div>
-                        <div id="numeroTarjetaDIV" class="row1 card1-no">
-                            <p v-for="numero of numeroTarjetaCredito">{{numero}}</p>
-                        </div>
-                        <div class="row1 card1-holder">
-                            <p id="Pcards">CARD HOLDER</p>
-                            <p id="Pcards">VALID TILL</p>
-                        </div>
-                        <div class="row1 name">
-                            <p>{{tarjeta.cardHolder}}</p>
-                            <p>{{tarjeta.thruDate}}</p>
-                        </div>
+            </template>
+            <template v-else-if="tarjetaDebito.length === 0">
+                <!-- <h1>DEBIT CARD NOT AVAILABLE</h1> -->
+                <div id="noCardMessageDebit" class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Important Message</h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary">Dear Client</h6>
+                        <p class="card-text">You don't have any debit cards, please contact us
+                            for more information.
+                        </p>
                     </div>
-                    <div class="back2" v-bind:class="tarjeta.color">
-                        <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img">
-                        <div class="bar">
-                            
-                        </div>
-                        <div class="row1 card1-cvv">
-                            <div id="cardBackSignature">
-                                <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                </div>
+            </template>
+        </div>
+        <div id="divTarjetas2">
+            <h2>Credit Card</h2>
+            <template v-if="tarjetaCredito.length > 0" v-for="tarjeta of tarjetaCredito">
+                <div class="container1">
+                    <div class="card1">
+                        <div class="card1-inner">
+                            <div class="front2" v-bind:class="tarjeta.color">
+                                <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img" alt="map-pic">
+                                <div class="row1">
+                                    <img id="imgLogoChip" src="https://i.ibb.co/G9pDnYJ/chip.png" alt="chip-pic">
+                                    <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
+                                </div>
+                                <div id="numeroTarjetaDIV" class="row1 card1-no">
+                                    <p v-for="numero of numeroTarjetaCredito">{{numero}}</p>
+                                </div>
+                                <div class="row1 card1-holder">
+                                    <p id="Pcards">CARD HOLDER</p>
+                                    <p id="Pcards">VALID TILL</p>
+                                </div>
+                                <div class="row1 name">
+                                    <p>{{tarjeta.cardHolder}}</p>
+                                    <p>{{tarjeta.thruDate}}</p>
+                                </div>
                             </div>
-                            <p>{{tarjeta.cvv}}</p>
-                        </div>
-                        <div class="row1 card1-text">
-                            <p>AUTHORIZED SIGNATURE/NOT VALID UNLES SIGNED/VALIDO SOLAMENTE CON FIRMA AUTORIZADA</p>
-                        </div>
-                        <div class="row1 signature1">
-                            <p>CUSTOMER SIGNATURE</p>
-                            <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                            <div class="back2" v-bind:class="tarjeta.color">
+                                <img src="./imagenes/jean-philippe-delberghe-75xPHEQBmvA-unsplash.jpg" class="map-img">
+                                <div class="bar">
+                                    
+                                </div>
+                                <div class="row1 card1-cvv">
+                                    <div id="cardBackSignature">
+                                        <img src="https://i.ibb.co/S6JG8px/pattern.png">
+                                    </div>
+                                    <p>{{tarjeta.cvv}}</p>
+                                </div>
+                                <div class="row1 card1-text">
+                                    <p>AUTHORIZED SIGNATURE/NOT VALID UNLES SIGNED/VALIDO SOLAMENTE CON FIRMA AUTORIZADA</p>
+                                </div>
+                                <div class="row1 signature1">
+                                    <p>CUSTOMER SIGNATURE</p>
+                                    <img src="https://i.ibb.co/WHZ3nRJ/visa.png" width="80px">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </template>
-    
-    <template class="noCardMessageCredit" v-else-if="tarjetaCredito.length === 0">
-        <!-- <h1>CREDIT CARD NOT AVAILABLE</h1> -->
-        <div id="noCardMessageCredit" class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Important Message</h5>
-              <h6 class="card-subtitle mb-2 text-body-secondary">Dear Client</h6>
-              <p class="card-text">You don't have any credit cards, please contact us
-                for more information.
-              </p>
-            </div>
-        </div>
-    </template>
-    <!-- </div> -->
-    
-    </div>
-
+            </template>
+            <!-- </div> -->
+            <template class="noCardMessageCredit" v-else-if="tarjetaCredito.length === 0">
+                    <!-- <h1>CREDIT CARD NOT AVAILABLE</h1> -->
+                    <div id="noCardMessageCredit" class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Important Message</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Dear Client</h6>
+                            <p class="card-text">You don't have any credit cards, please contact us
+                                for more information.
+                            </p>
+                        </div>
+                    </div>
+            </template>
+        </div>    
+    </div> 
     <div class="botonClase">
         <!-- v-on:click="logOut" -->
         <a href="#"><ion-icon class="buttonUp" name="arrow-up-outline"></ion-icon></a>

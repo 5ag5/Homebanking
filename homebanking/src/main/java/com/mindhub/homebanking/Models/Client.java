@@ -41,7 +41,7 @@ public class Client {
         this.password = password;
     }
 
-    public Set<Card> getCreditCards() {
+    public Set<Card> getCards() {
         return cards;
     }
 

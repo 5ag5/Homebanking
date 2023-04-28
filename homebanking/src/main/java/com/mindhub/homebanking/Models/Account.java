@@ -33,6 +33,12 @@ public class Account {
         this.creationDate = creationDate;
     }
 
+    public Account(String number, LocalDateTime creationDate) {
+        this.number = number;
+        this.balance = 0;
+        this.creationDate = creationDate;
+    }
+
     public Account() {}
     public Long getId() {
         return id;
