@@ -34,8 +34,8 @@ public class HomebankingApplication {
 									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
 									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return (args) -> {
-			User admin = new User("admin@email.com",passwordEnconder.encode("admin1234"),
-					AuthorityUtils.createAuthorityList("ADMIN"));
+			//Client admin = new Client("admin, "admin","admin@email.com","admin1234").AuthorityUtils.createAuthorityList("ADMIN");
+			Client admin = new Client("admin","admin","admin@emailAdmin.com",passwordEnconder.encode("admin1234"));
 
 			Client cliente1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEnconder.encode("melba"));
 			Client cliente2 = new Client("Diego", "Suarez", "diegoCorreo@mindhub.com",passwordEnconder.encode("3EDC4RFV"));
@@ -126,6 +126,7 @@ public class HomebankingApplication {
 			repository.save(cliente1);
 			repository.save(cliente2);
 			repository.save(cliente3);
+			repository.save(admin);
 
 			Accountrepository.save(account1);
 			Accountrepository.save(account2);

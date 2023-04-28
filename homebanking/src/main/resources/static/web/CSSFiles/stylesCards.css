@@ -108,6 +108,10 @@ footer{
     margin-right: 11%;
 }
 
+#orderNewCardAlert{
+    color: rgb(0,212,255);
+}
+
 #cuerpoCartas{
     display: flex;
     flex-direction: row;
@@ -210,15 +214,26 @@ ion-icon{
     display: flex;
     align-items: center;
     margin-left: 0;
-    align-items: center !important;
-    justify-content: center !important;
+    height: fit-content;
+    /* align-items: center !important;
+    justify-content: center !important; */
+}
+
+#divTarjetas1{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    color: white;
 }
 
 #divTarjetas2{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
 }
 
 #noCardMessageCredit{
@@ -240,21 +255,23 @@ ion-icon{
 
 .divPrincipalCards{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center !important;
+    flex-direction: row !important;
+    /* flex-wrap: wrap; */
+    /* align-items: center !important; */
     justify-content: center !important;
     gap: 1rem;
 
 }
 
 .container1 {
-    min-height: 70vh !important;
+    /* min-height: 70vh !important; */
     width: 100% !important;
     background: none !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
 }
 
 .card1 {

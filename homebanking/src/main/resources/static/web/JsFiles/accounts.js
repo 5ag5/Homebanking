@@ -80,7 +80,7 @@ const app = createApp({
             this.cliente = this.clientes.firstName + " " + this.clientes.lastName
         },
 
-        logOut(){
+        logOut(){            
             console.log("funciona")
             axios.post('/api/logout').then(response => {
                 console.log('signed out!!!')
@@ -89,8 +89,20 @@ const app = createApp({
             .catch(err => console.log(err))
         },
 
-        prueba(){
-            console.log('Esto es una prueba que funciona')
+        createAccount(){
+            console.log("esto funciona")
+            axios.post('/api/clients/current/accounts').then( response =>{
+
+                Swal.fire({
+                    title:'Message Confirmation',
+                    text: 'Your account has being created',
+                    icon:'success',
+                    didOpen:() => {
+                        document.querySelector('.swal2-confirm').addEventListener('click', () =>{location.reload(true)})
+                    },
+                    }
+                )
+            })
         }
     },
 

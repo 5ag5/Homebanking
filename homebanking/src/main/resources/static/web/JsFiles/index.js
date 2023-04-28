@@ -35,6 +35,14 @@ const app = createApp({
                 });
         },
 
+        loginManager(){
+            axios.post('api/login',`email=${this.usuario}&password=${this.contrasena}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+            .then(response =>{
+                // window.location.href = '/web/manager.html'
+                console.log("this is correct")
+            })
+        }
+
     },  
 
 })
