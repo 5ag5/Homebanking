@@ -15,10 +15,10 @@
     </header>
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Accounts</a>
+            <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
         </li>
         <li class="nav-item">
-            <a href="cards.html?id=1" class="nav-link" aria-current="page">Credit Cards</a>
+            <a href="./cards.html" class="nav-link" aria-current="page">Credit Cards</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Products</a>
@@ -26,12 +26,12 @@
         <li class="nav-item">
             <a class="nav-link" href="#">Support</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <div id="searchBar">
                 <input id="search1" type="search" placeholder="Enter to Search">
                 <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
             </div>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
         </li>
@@ -62,8 +62,27 @@
             </div>
         </form>
 
-
-        <div id="carouselExample" class="carousel slide">
+        <div id="cuerpoCartas">
+            <div class="card" style="width: 18rem;">
+                <img src="./imagenes/MindHub Brothers Gold.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">Gold Credit card, if you are a frequent traveler and would like extra miles!</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem;">
+                <img src="./imagenes/MindHub Brothers Silver.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">If you are a frequent buyer and would like to get cash back on all your transactions.</p>
+                </div>
+              </div>
+              <div class="card" style="width: 18rem;">
+                <img src="./imagenes/MindHub Brothers Titanium.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">This is for our premium clients with discounts on all transactions made!</p>
+                </div>
+              </div>
+        </div>
+        <!-- <div id="carouselExample" class="carousel slide">
             <button id="buttonPrevAndBack" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
@@ -138,7 +157,7 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
-        </div>
+        </div> -->
     </div>
 </main>
 <footer>
@@ -149,19 +168,19 @@
         <a id="idFooter" href="#">Comments about MindHub Brothers</a>
     </div>
     <div class="divFooter">
-        <h6>Complains</h6>
+        <h6 id="h6Id">Complains</h6>
         <a id="idFooter" href="#">Contact</a>
         <a id="idFooter" href="#">Product delivery status</a>
     </div>
     <div class="divFooter">
-        <h6>About MindHub Brothers</h6>
+        <h6 id="h6Id">About MindHub Brothers</h6>
         <a id="idFooter" href="#">New Products</a>
         <a id="idFooter" href="#">Work with us</a>
         <a id="idFooter" href="#">Investors</a>
         <a id="idFooter" href="#">Sustainability</a>
     </div>
     <div class="divFooter">
-        <h6>Join Us</h6>
+        <h6 id="h6Id">Join Us</h6>
         <a id="idFooter" href="#">MindHub Brothers App</a>
         <a id="idFooter" href="#">Subscribe your e-mail</a>
     </div>

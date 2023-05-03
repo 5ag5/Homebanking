@@ -13,7 +13,7 @@ body{
 
     background: linear-gradient(rgba(41, 41, 41, 0.72), rgba(41, 41, 41, 0.72) ), url(../imagenes/rascacielos2.jpeg);
     background-size: cover;
-    height: 100%; 
+    /* height: 100%;  */
     z-index: 1;
 }
 
@@ -52,7 +52,7 @@ main{
     min-height: 67vh; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 #iconoBan{
@@ -66,8 +66,8 @@ main{
 
 h1{
     color: white;
-    margin-left: 2rem;
-    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.322);
+    /* margin: 1rem; */
     text-align: center;
 }
 
@@ -79,6 +79,10 @@ h1{
 #divTabla{
     margin-left: 11%;
     margin-right: 11%;
+    margin-top: 11%;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .table{
@@ -89,6 +93,11 @@ h1{
 .div5Footer{
     display: flex;
     justify-content: end;
+}
+
+#h6Id{
+    font-size: large;
+    font-weight: bold;
 }
 
 ion-icon{
@@ -127,7 +136,7 @@ ion-icon{
 
 #idFooter{
     color: black;
-    font-size: x-small;
+    font-size:medium;
     text-decoration: none;
 }
 

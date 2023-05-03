@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @RestController
@@ -37,17 +38,10 @@ public class CardController {
             return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
         }
 
-        if(sizeSet > 2){
-            return new ResponseEntity<>("Client cannot order more than 3 cards", HttpStatus.FORBIDDEN);
+        if(sizeSet > 5){
+            return new ResponseEntity<>("Client cannot order more than 6 cards", HttpStatus.FORBIDDEN);
         }else {
-            Utility function = new Utility();
-
-            int number1 = (int) Math.round(Math.random() * (9999 - 1000) + 1000);
-            int number2 = (int) Math.round(Math.random() * (9999 - 1000) + 1000);
-            int number3 = (int) Math.round(Math.random() * (9999 - 1000) + 1000);
-            int number4 = (int) Math.round(Math.random() * (9999 - 1000) + 1000);
-
-            String numeroF = number1 + "-" + number2 + "-" + number3 + "-" + number4;
+            String numeroF = createRandomNumber() + "-" + createRandomNumber() + "-" + createRandomNumber() + "-" + createRandomNumber();
 
             LocalDate date1 = LocalDate.now();
 
@@ -60,6 +54,10 @@ public class CardController {
             cardRepository.save(newCard);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
+    }
+
+    private int createRandomNumber(){
+        return (int) (1000+ Math.random() * 9999);
     }
 
 

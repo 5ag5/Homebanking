@@ -1,15 +1,14 @@
 package com.mindhub.homebanking.Models;
 
+import java.util.Random;
+
 public class Utility {
+    private Random random = new Random();
+    public Utility(){
+    }
 
-    public Utility(){}
-
-    public double generateRandomNumber(){
-        int min = 1000;
-        int max = 9999;
-        double number = Math.round((Math.random() * (999 - 100) + 100));
-
-        return number;
+    public int generateRandomNumber(){
+        return (int) (1000+ Math.random() * 9999);
     }
 
 }

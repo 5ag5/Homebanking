@@ -25,14 +25,15 @@ main{
 
 h1{
     color: white;
-    margin-left: 2rem;
-    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.322);
+    /* margin: 1rem; */
     text-align: center;
 }
 
 h3{
     color: white;
-    margin: 1rem;
+    /* margin: 1rem; */
+    background-color: rgba(0, 0, 0, 0.322);
 }
 
 div{
@@ -41,6 +42,7 @@ div{
 
 td, th{
     text-align: center;
+    font-size: large;
 }
 
 header{
@@ -71,6 +73,11 @@ footer{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+#h6Id{
+    font-size: large;
+    font-weight: bold;
 }
 
 #iconoBan{
@@ -104,10 +111,11 @@ footer{
 
 .card{
     position: relative;
+    background-color: rgb(214, 232, 235);
 }
 
 .table{
-    background-color: white;
+    background-color: rgb(214, 232, 235);
     border-radius: 4px;
 }
 
@@ -163,11 +171,13 @@ ion-icon{
 .divFooter{
     display: flex;
     flex-direction: column;
+    font-size: large;
+    font-style: bold;
 }
 
 #idFooter{
     color: black;
-    font-size: x-small;
+    font-size: medium;
     text-decoration: none;
 }
 
@@ -186,6 +196,7 @@ ion-icon{
     border: none;
     background-color: white;
     border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.322);
 }
 
 

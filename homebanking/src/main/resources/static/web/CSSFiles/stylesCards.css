@@ -22,13 +22,13 @@ main{
     min-height: 67vh; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 h1{
     color: white;
-    margin-left: 2rem;
-    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.322);
+    /* margin: 1rem; */
     text-align: center;
 }
 
@@ -66,6 +66,8 @@ header{
     color: white;
     text-decoration: none;
 }
+
+
 
 /* .nav-item{
     transition: background-color .5s;
@@ -110,6 +112,7 @@ footer{
 
 #orderNewCardAlert{
     color: rgb(0,212,255);
+    text-decoration: underline !important;
 }
 
 #cuerpoCartas{
@@ -129,6 +132,10 @@ footer{
     border-radius: 4px;
 }
 
+#h6Id{
+    font-size: large;
+    font-weight: bold;
+}
 
 .div5Footer{
     display: flex;
@@ -180,7 +187,7 @@ ion-icon{
     justify-content: end;
     align-content: end;
     position: sticky;
-    bottom: 5px;
+    bottom: 0;
 }
 
 .divFooter{
@@ -195,7 +202,7 @@ ion-icon{
 
 #idFooter{
     color: black;
-    font-size: x-small;
+    font-size: medium;
     text-decoration: none;
 }
 
@@ -256,10 +263,11 @@ ion-icon{
 .divPrincipalCards{
     display: flex;
     flex-direction: row !important;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     /* align-items: center !important; */
     justify-content: center !important;
     gap: 1rem;
+    margin-top: 5%;
 
 }
 
@@ -318,16 +326,16 @@ ion-icon{
 }
 
 .GOLD{
-    background-image: linear-gradient(45deg, rgb(124, 122, 21), #ffffff) !important;
+    background-image: linear-gradient(45deg, rgb(124, 122, 21), #000000) !important;
 
 }
 
 .TITANIUM{
-    background-image: linear-gradient(45deg, rgb(0, 0, 0), #ffffff) !important;
+    background-image: linear-gradient(45deg, rgb(0, 0, 0), #797979) !important;
 }
 
 .SILVER{
-    background-image: linear-gradient(45deg, rgb(136, 136, 136), #878383) !important;
+    background-image: linear-gradient(45deg, #000000, #000000) !important;
 }
 
 .row1 {
@@ -339,6 +347,7 @@ ion-icon{
 #numeroTarjetaDIV{
     display: flex;
     flex-direction: row;
+    width: 100%;
 }
 
 .map-img {
@@ -424,4 +433,181 @@ ion-icon{
 
 .card1:hover .card1-inner {
     transform: rotateY(-180deg) !important;
+}
+
+@media only screen and (min-width: 300px) and (max-width: 321px) {
+    .card1 {
+        width: 300px !important;
+        height: 240px !important;
+        color: white !important;
+        cursor: pointer !important;
+        perspective: 1000px !important;
+    }
+
+    .container1 {
+        width: 100% !important;
+        background: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: 0;
+        /* margin-bottom: 2rem; */
+    }
+
+    .card1-no {
+        font-size: 25px !important;
+        margin-top: 40px !important;
+    }
+
+    .name {
+        font-size: 18px !important;
+        margin-top: 0 !important;
+    }
+
+    #imgLogoChip{
+        width: 45px !important;
+    }
+
+    .card1-cvv p {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 15px !important;
+        padding: 3px 3px !important; 
+    }
+
+    .card1-text {
+        margin-top: 15px !important;
+        font-size: 10px !important;
+    }
+
+    .signature1 {
+        margin-top: 15px !important;
+        font-size: 12px !important;
+    }
+
+    .bar {
+        background: #222 !important; 
+        margin-left: -30px !important;
+        margin-right: -30px !important;
+        height: 45px !important;
+        margin-top: 10px !important;
+    }
+
+}
+
+@media only screen and (min-width: 322px) and (max-width: 375px) {
+    .card1 {
+        width: 300px !important;
+        height: 240px !important;
+        color: white !important;
+        cursor: pointer !important;
+        perspective: 1000px !important;
+    }
+
+    .container1 {
+        width: 100% !important;
+        background: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: 0;
+        /* margin-bottom: 2rem; */
+    }
+
+    .card1-no {
+        font-size: 25px !important;
+        margin-top: 40px !important;
+    }
+
+    .name {
+        font-size: 18px !important;
+        margin-top: 0 !important;
+    }
+
+    #imgLogoChip{
+        width: 45px !important;
+    }
+
+    .card1-cvv p {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 15px !important;
+        padding: 3px 3px !important; 
+    }
+
+    .card1-text {
+        margin-top: 15px !important;
+        font-size: 10px !important;
+    }
+
+    .signature1 {
+        margin-top: 15px !important;
+        font-size: 12px !important;
+    }
+
+    .bar {
+        background: #222 !important; 
+        margin-left: -30px !important;
+        margin-right: -30px !important;
+        height: 45px !important;
+        margin-top: 10px !important;
+    }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 425px) {
+    .card1 {
+        width: 300px !important;
+        height: 240px !important;
+        color: white !important;
+        cursor: pointer !important;
+        perspective: 1000px !important;
+    }
+
+    .container1 {
+        width: 100% !important;
+        background: none !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-left: 0;
+    }
+
+    .card1-no {
+        font-size: 25px !important;
+        margin-top: 40px !important;
+    }
+
+    .name {
+        font-size: 18px !important;
+        margin-top: 0 !important;
+    }
+
+    #imgLogoChip{
+        width: 45px !important;
+    }
+
+    .card1-cvv p {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 15px !important;
+        padding: 3px 3px !important; 
+    }
+
+    .card1-text {
+        margin-top: 15px !important;
+        font-size: 10px !important;
+    }
+
+    .signature1 {
+        margin-top: 15px !important;
+        font-size: 12px !important;
+    }
+
+    .bar {
+        background: #222 !important; 
+        margin-left: -30px !important;
+        margin-right: -30px !important;
+        height: 45px !important;
+        margin-top: 10px !important;
+    }
 }

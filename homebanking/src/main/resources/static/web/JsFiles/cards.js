@@ -30,22 +30,17 @@ const app = createApp({
                 this.nombre = elemento.data.firstName + " " + elemento.data.lastName
                 this.tarjetas = elemento.data.cards
                 
-                // console.log(this.datos)
-                // console.log(this.nombre)
+                console.log(this.tarjetas)
+                // console.log(this.numeroTarjetaCredito)
                 // console.log(this.tarjetas)
 
-                //this.changeDatoFormat()
+                this.changeDatoFormat()
                 this.datosTarjeta()
-                console.log(this.tarjetaDebito)
-                console.log(this.tarjetaCredito)
+                this.splitCardNumber()
+                // console.log(this.tarjetaDebito)
+                // console.log(this.tarjetaCredito)
 
-                // if(this.tarjetaCredito === undefined){
-                //     console.log(true)
-                // }
-                this.splitDebitCardNumber()
-                // console.log(this.numeroTarjetaDebito)
-
-                console.log(this.tarjetas)
+                // console.log(this.tarjetas)
             })
         },
 
@@ -59,14 +54,25 @@ const app = createApp({
             }
         },
 
-        splitDebitCardNumber(){
-            this.numeroTarjetaDebito = this.tarjetaDebito[0].number.split("-")
-            this.numeroTarjetaCredito = this.tarjetaCredito[0].number.split("-")
+        splitCardNumber(){
+            this.tarjetaDebito.forEach(element => {
+                element.numero1 = element.number.substring(0,4);
+                element.numero2 = element.number.substring(4,8);
+                element.numero3 = element.number.substring(8,12);
+                element.numero4 = element.number.substring(12,16);
+            })
+
+            this.tarjetaCredito.forEach(element => {
+                element.numero1 = element.number.substring(0,4);
+                element.numero2 = element.number.substring(4,8);
+                element.numero3 = element.number.substring(8,12);
+                element.numero4 = element.number.substring(12,16);
+            })
         },
 
         changeDatoFormat(){
             this.tarjetas.forEach(element => {
-                element.number = element.number.replaceAll("-"," ")
+                element.number = element.number.replaceAll("-","")
                 element.thruDate = element.thruDate.substring(0,7)
                 console.log(element.thruDate.substring(0,7))
             });
@@ -80,6 +86,7 @@ const app = createApp({
             })
             .catch(err => console.log(err))
         },
+
     },
 })
 

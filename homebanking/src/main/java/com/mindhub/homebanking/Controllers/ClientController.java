@@ -44,9 +44,7 @@ public class ClientController {
 
     @RequestMapping("/api/clients/current")
     public ClientDTO getClient(Authentication authentication){
-        Client client = clientRepository.findByEmail(authentication.getName());
-        ClientDTO clientDTO = new ClientDTO(client);
-        return clientDTO;
+        return new ClientDTO(clientRepository.findByEmail(authentication.getName()));
     }
 
     @RequestMapping(path = "/api/clients", method = RequestMethod.POST)
@@ -70,13 +68,12 @@ public class ClientController {
         int max = 999999;
 
         String number = "VIN" + Math.round((Math.random() * (max - min) + min));
-        double balance = 0;
         LocalDateTime creationDate = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String date1Tem = creationDate.format(formatter);
         LocalDateTime date1f = LocalDateTime.parse(date1Tem, formatter);
 
-        Account account = new Account(number, balance, date1f);
+        Account account = new Account(number, 0, date1f);
 
         clientNew.addAccount(account);
         accountRepository.save(account);

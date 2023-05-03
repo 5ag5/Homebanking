@@ -21,20 +21,20 @@
             <a id="orderNewCardAlert" class="nav-link" href="./create-cards.html">Order New Cards</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="./transactions.html">Transactions Accounts</a>
+        </li>
+        <!-- <li class="nav-item">
             <a class="nav-link" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="./index.html">Home</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
             <a class="nav-link" href="#">Support</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
             <div id="searchBar">
                 <input id="search1" type="search" placeholder="Enter to Search">
                 <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
             </div>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
         </li>
@@ -55,7 +55,10 @@
                                     <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
                                 </div>
                                 <div id="numeroTarjetaDIV" class="row1 card1-no">
-                                    <p v-for="numero of numeroTarjetaDebito">{{numero}}</p>
+                                    <p>{{tarjeta.numero1}}</p>
+                                    <p>{{tarjeta.numero2}}</p>
+                                    <p>{{tarjeta.numero3}}</p>
+                                    <p>{{tarjeta.numero4}}</p>
                                 </div>
                                 <div class="row1 card1-holder">
                                     <p id="Pcards">CARD HOLDER</p>
@@ -113,7 +116,10 @@
                                     <img id="imgLogoChip" src="https://i.ibb.co/WHZ3nRJ/visa.png" alt="visa-pic">
                                 </div>
                                 <div id="numeroTarjetaDIV" class="row1 card1-no">
-                                    <p v-for="numero of numeroTarjetaCredito">{{numero}}</p>
+                                    <p>{{tarjeta.numero1}}</p>
+                                    <p>{{tarjeta.numero2}}</p>
+                                    <p>{{tarjeta.numero3}}</p>
+                                    <p>{{tarjeta.numero4}}</p>
                                 </div>
                                 <div class="row1 card1-holder">
                                     <p id="Pcards">CARD HOLDER</p>
@@ -175,19 +181,19 @@
             <a id="idFooter" href="#">Comments about MindHub Brothers</a>
         </div>
         <div class="divFooter">
-            <h6>Complains</h6>
+            <h6 id="h6Id">Complains</h6>
             <a id="idFooter" href="#">Contact</a>
             <a id="idFooter" href="#">Product delivery status</a>
         </div>
         <div class="divFooter">
-            <h6>About MindHub Brothers</h6>
+            <h6 id="h6Id">About MindHub Brothers</h6>
             <a id="idFooter" href="#">New Products</a>
             <a id="idFooter" href="#">Work with us</a>
             <a id="idFooter" href="#">Investors</a>
             <a id="idFooter" href="#">Sustainability</a>
         </div>
         <div class="divFooter">
-            <h6>Join Us</h6>
+            <h6 id="h6Id">Join Us</h6>
             <a id="idFooter" href="#">MindHub Brothers App</a>
             <a id="idFooter" href="#">Subscribe your e-mail</a>
         </div>

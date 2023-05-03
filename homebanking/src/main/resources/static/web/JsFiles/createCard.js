@@ -22,7 +22,7 @@ const app = createApp({
         },
 
         createCardMethod(){
-            axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.cardOptionColor}`)
+            axios.post('/api/clients/current/cards',`cardType=${this.cardType}&cardColor=${this.cardOptionColor}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
             .then(response =>{  
                 console.log("funciona")
                 Swal.fire(
@@ -30,6 +30,8 @@ const app = createApp({
                     'Your new card has being added to account, and is being shipped to your address!',
                     'success'
                 )
+
+                document.querySelector('.swal2-confirm').addEventListener('click',() =>{window.location.href='/web/cards.html'})
             })
         },
 

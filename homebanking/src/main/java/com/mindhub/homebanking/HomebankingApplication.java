@@ -143,20 +143,6 @@ public class HomebankingApplication {
 			TransactionRepository.save(transaction23);
 			TransactionRepository.save(transaction24);
 
-			account1.setBalance(account1.getBalance()-transaction1.getAmount());
-			account1.setBalance(account1.getBalance()-transaction12.getAmount());
-			account1.setBalance(account1.getBalance()+transaction13.getAmount());
-			account1.setBalance(account1.getBalance()-transaction14.getAmount());
-
-			Accountrepository.save(account1);
-
-			account2.setBalance(account2.getBalance()-transaction2.getAmount());
-			account2.setBalance(account2.getBalance()+transaction22.getAmount());
-			account2.setBalance(account2.getBalance()+transaction23.getAmount());
-			account2.setBalance(account2.getBalance()+transaction24.getAmount());
-
-			Accountrepository.save(account2);
-
 			loanRepository.save(hipotecario);
 			loanRepository.save(personal);
 			loanRepository.save(automotriz);

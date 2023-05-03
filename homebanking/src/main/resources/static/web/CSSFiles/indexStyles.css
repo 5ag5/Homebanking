@@ -7,8 +7,7 @@
 }
 
 body{
-
-    background: linear-gradient( rgba(32, 32, 32, 0.72), rgba(32, 32, 32, 0.72  ) ), url(../imagenes/imaguenPrincipal.jpeg);
+    background: linear-gradient(rgba(255, 245, 245, 0.72), rgba(255, 245, 245, 0.72)), url(../imagenes/imaguenPrincipal.jpeg);
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -34,8 +33,8 @@ main{
 
 h1{
     color: white;
-    margin-left: 2rem;
-    margin: 1rem;
+    background-color: rgba(0, 0, 0, 0.322);
+    /* margin: 1rem; */
     text-align: center;
 }
 
@@ -212,9 +211,14 @@ fieldset{
     flex-direction: column;
 }
 
+#h6Id{
+    font-size: large;
+    font-weight: bold;
+}
+
 #idFooter{
     color: black;
-    font-size: x-small;
+    font-size: medium;
     text-decoration: none;
 }
 
