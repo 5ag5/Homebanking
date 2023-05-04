@@ -5,10 +5,8 @@
     font-family: 'Times New Roman', Times, serif;
 
 }
-
 body{
-
-    background: linear-gradient( rgba(32, 32, 32, 0.72), rgba(32, 32, 32, 0.72  ) ), url(../imagenes/imaguenPrincipal.jpeg);
+    background: linear-gradient(rgba(41, 41, 41, 0.72), rgba(41, 41, 41, 0.72)), url(../imagenes/pexels-snapwire-37724-modified.jpg);
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -19,6 +17,7 @@ body{
     background-repeat: no-repeat;
     animation: change 10s infinite ease-in-out;
 }
+
 p{
     margin-bottom: 0 !important;
     padding-bottom: 1rem !important;
@@ -35,26 +34,13 @@ main{
 h1{
     color: white;
     background-color: rgba(0, 0, 0, 0.322);
-    /* margin: 1rem; */
     text-align: center;
     width: 100%;
-
-}
-
-h2{
-    color: white;
-    margin-left: 2rem;
-    margin: 1rem;
-    text-align: center;
 }
 
 h3{
     color: white;
     margin: 1rem;
-}
-
-div{
-    margin: 2rem;
 }
 
 td, th{
@@ -91,12 +77,6 @@ footer{
     flex-wrap: wrap;
 }
 
-ion-icon{
-    height: 2rem;
-    width: 2rem;
-    color: black;
-}
-
 #iconoBan{
     /* object-fit: contain; */
     width: 20rem;
@@ -106,43 +86,90 @@ ion-icon{
     padding: 3px;
 }
 
+.formTransactions{
+    background-color: rgb(214, 232, 235);
+    border-radius: 4px;
+    padding: 5%;
+    margin: 5%;
+}
+
+.botonLogOut{
+    color: white;
+    /* background-color: rgb(9,65,121) ; */
+    /* border-radius: 2rem;
+    padding: 10px; */
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+ background-color: lightblue;
+}
+
 .divFooter{
     display: flex;
     flex-direction: column;
+    margin: 2rem;
+
+}
+
+#divTabla{
+    margin-left: 11%;
+    margin-right: 11%;
+}
+
+.div5Footer{
+    display: flex;
+    justify-content: end;
+    margin: 2rem;
+}
+
+ion-icon{
+    height: 2rem;
+    width: 2rem;
+    color: black;
+}
+
+#h6Id{
+    font-size: large;
+    font-weight: bold;
 }
 
 #idFooter{
     color: black;
-    font-size: x-small;
+    font-size: medium;
     text-decoration: none;
 }
 
-.divInputDataNewUser{
-    display: flex;
-    flex-direction: column;
-}
-
-#labelFormRegister{
+.logosRedes:hover{
     color: white;
+    /* object-fit: contain;
+    height: 5rem;
+    width: 5rem;
+    margin: 1rem; */
 }
 
-.formNewUser{
-    background-color: rgb(9,65,121);
-    border-radius: 4px;
-    padding: 15px;
-    margin-bottom: 1rem;
-
+.botonAtras{
+    color: white;
+    background-color: rgb(9,65,121) ;
+    border-radius: 2rem;
+    position: sticky;
 }
 
-.card{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-
+.botonClase{
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    position: sticky;
+    bottom: 0;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
-.divFormNewUser{
-    margin: 10px;
-}
-.form-text{
-    color: gray;
+.buttonUp{
+    position: sticky;
+    bottom:0;
+    color: white;
+    background-color: rgb(9,65,121) ;
+    border-radius: 2rem;
+    padding: 10px;
 }

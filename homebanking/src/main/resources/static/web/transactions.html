@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./CSSFiles/transactionsStyles.css">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <title>Transactions</title>
+    </head>
+<body id="app">
+    <header>
+        <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
+    </header>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./cards.html">Cards</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./create-cards.html">Order a new Card</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
+        </li>
+    </ul>
+    <main>
+    <h1>TRANSACTIONS</h1>
+
+    <div id="divTabla">
+        <form class="formTransactions">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Account Number</label>
+                <select class="form-select" aria-label="Default select example" v-model="accountNumberOrigin">
+                    <option selected>Open this select menu</option>
+                    <option v-for="account of accounts" v-bind:value="account.number">{{account.number}}</option>
+                </select>
+            <div id="emailHelp" class="form-text">Select the account Number you wish to transfer from</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Destination Type</label>
+                <select class="form-select" aria-label="Default select example" v-model="destinationType">
+                    <option value="OWN" selected>OWN</option>
+                    <option value="THIRD">THIRD</option>
+                </select>
+            <div id="emailHelp" class="form-text">Wil this transfer be to your own account or to somebody else?</div>
+            </div>
+                <template v-if="destinationType === 'OWN'">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Account Number</label>
+                        <select class="form-select" aria-label="Default select example" v-model="accountNumberDestination">
+                            <option selected>Open this select menu</option>
+                            <option v-for="account of accounts" v-bind:value="account.number">{{account.number}}</option>
+                        </select>
+                        <div id="emailHelp" class="form-text">Select the account Number where you wish to transfer to</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Amount to transfer</label>
+                        <input type="number" class="form-control" id="exampleInputPassword1" v-model="amountTransfer">
+                        <div id="emailHelp" class="form-text">Select the amount you wish to transfer to</div>
+                    </div>
+                </template>
+            <template v-else>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Account Number Destination</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" v-model="accountNumberDestination">
+                    <div id="emailHelp" class="form-text">Select the account Number where you wish to transfer to</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Amount to Transfer</label>
+                    <input type="number" class="form-control" id="exampleInputPassword1" v-model="amountTransfer">
+                    <div id="emailHelp" class="form-text">Select the amount you wish to transfer</div>
+                </div>
+            </template>
+            <button type="button" class="btn btn-primary" v-on:click="transferTransactions">Submit</button>
+        </form>
+    </div>
+
+
+
+
+
+
+    <div class="botonClase">
+        <!-- v-on:click="logOut" -->
+        <a href="#"><ion-icon class="buttonUp" name="arrow-up-outline"></ion-icon></a>
+    </div>
+    </main>
+    <footer>
+        <div class="divFooter">
+            <a id="idFooter" href="#">Search a Bank</a>
+            <a id="idFooter" href="#">Subscribe to especial promotions</a>
+            <a id="idFooter" href="#">Productos for Students</a>
+            <a id="idFooter" href="#">Comments about MindHub Brothers</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">Complains</h6>
+            <a id="idFooter" href="#">Contact</a>
+            <a id="idFooter" href="#">Product delivery status</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">About MindHub Brothers</h6>
+            <a id="idFooter" href="#">New Products</a>
+            <a id="idFooter" href="#">Work with us</a>
+            <a id="idFooter" href="#">Investors</a>
+            <a id="idFooter" href="#">Sustainability</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">Join Us</h6>
+            <a id="idFooter" href="#">MindHub Brothers App</a>
+            <a id="idFooter" href="#">Subscribe your e-mail</a>
+        </div>
+        <div class="div5Footer">
+            <a href="https://www.instagram.com/"><ion-icon class="logosRedes" name="logo-instagram"></ion-icon></a>
+            <a href="https://www.facebook.com/"><ion-icon class="logosRedes" name="logo-facebook"></ion-icon></a>
+            <a href="https://twitter.com/home"><ion-icon class="logosRedes" name="logo-twitter"></ion-icon></a>
+            <a href="https://www.youtube.com/"><ion-icon class="logosRedes" name="logo-youtube"></ion-icon></a>
+        </div>
+    </footer>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+<script src="./JsFiles/transactions.js"></script>
+</body>
+</html>

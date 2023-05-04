@@ -22,9 +22,21 @@ methods:{
             .then(response2 => {
                 console.log("funciona2")
                 window.location.href = '/web/accounts.html'
-            }).catch(err => console.log(err))
+            }).catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Issue with Operation',
+                    text: err.response.data,
+                })            
+            })
             }
-        ).catch(err => console.log(err))
+        ).catch(err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Issue with Operation',
+                text: err.response.data,
+            })
+        })
     },
 },
 })

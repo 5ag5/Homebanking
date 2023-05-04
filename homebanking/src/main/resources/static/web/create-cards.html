@@ -21,10 +21,7 @@
             <a href="./cards.html" class="nav-link" aria-current="page">Credit Cards</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Support</a>
+            <a id="currentPage" href="./transactions.html" class="nav-link" aria-current="page">Transactions Accounts</a>
         </li>
         <!-- <li class="nav-item">
             <div id="searchBar">
@@ -39,28 +36,30 @@
 <main>
     <h1>Request a new Card</h1>
     <div id="DivCarroAndForm">
-        <form class = "formularioCreateCard" @submit.prevent="createCardMethod">
-            <div class="divFormCreate">
-                <label for="InputLabel" class="form-label">Type of Card</label>
-                <select class="form-select" aria-label="Default select example" v-model="cardType">
-                    <option selected>Open this select menu</option>
-                    <option value="DEBIT">DEBIT</option>
-                    <option value="CREDIT">CREDIT</option>
-                </select>
+        <div>
+            <form class = "formularioCreateCard" @submit.prevent="createCardMethod">
+                <div class="divFormCreate">
+                    <label for="InputLabel" class="form-label">Type of Card</label>
+                    <select class="form-select" aria-label="Default select example" v-model="cardType">
+                        <option selected>Open this select menu</option>
+                        <option value="DEBIT">DEBIT</option>
+                        <option value="CREDIT">CREDIT</option>
+                    </select>
+                </div>
+                <div class="divFormCreate">
+                    <label for="InputLabel" class="form-label">Type of Color</label>
+                    <select class="form-select" aria-label="Default select example" v-model="cardOptionColor">
+                        <option selected>Open this select menu</option>
+                        <option value="GOLD">GOLD</option>
+                        <option value="SILVER">SILVER</option>
+                        <option value="TITANIUM">TITANIUM</option>
+                    </select>
+                </div>
+                <div class="m-3">
+                    <button type="submit"class="btn btn-primary">Submit</button>
+                </div>
+                </form>
             </div>
-            <div class="divFormCreate">
-                <label for="InputLabel" class="form-label">Type of Color</label>
-                <select class="form-select" aria-label="Default select example" v-model="cardOptionColor">
-                    <option selected>Open this select menu</option>
-                    <option value="GOLD">GOLD</option>
-                    <option value="SILVER">SILVER</option>
-                    <option value="TITANIUM">TITANIUM</option>
-                </select>
-            </div>
-            <div class="m-3">
-                <button type="submit"class="btn btn-primary">Submit</button>
-            </div>
-        </form>
 
         <div id="cuerpoCartas">
             <div class="card" style="width: 18rem;">
@@ -82,82 +81,6 @@
                 </div>
               </div>
         </div>
-        <!-- <div id="carouselExample" class="carousel slide">
-            <button id="buttonPrevAndBack" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <div class="carousel-inner">
-            <div class="carousel-item active">
-            
-
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img id="imgCard" src="./imagenes/MindHub Brothers Gold.png" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Debit Card Gold</h5>
-                                <p class="card-text">With MindHub Brother's bank credit card Gold, you get:
-                                    cash back on purchases, unlimited withdrawals, 10000 point on Air Miles when you get a new MindHub Brothers 
-                                    Gold Debit Card.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="carousel-item">
-
-
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                    <div class="col-md-4">
-                        <img id="imgCard" src="./imagenes/MindHub Brothers Titanium.png" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                        <h5 class="card-title">Credit Card Titanium</h5>
-                        <p class="card-text">With MindHub Brother's bank Credit card Titanium, you get:
-                        0% on purchases outside the US, VIP membership on all airports, free travel insurance everywhere, 
-                        and reduce interest rate for the first 6 months!</p>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="carousel-item">
-
-
-
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                    <div class="col-md-4">
-                        <img id="imgCard" src="./imagenes/MindHub Brothers Silver.png" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                        <h5 class="card-title">Credit Card Silver</h5>
-                        <p class="card-text">With MindHub Brother's bank Credit card Silver, you get:
-                        Discount on all restaurants, when using your Silver Credit Card, Reduced interest rate for more than 20 purchases per month,
-                        concert tickets to see Rihanna when getting you new Credit Card!</p>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-
-
-            </div>
-            </div>
-            <button id="buttonPrevAndBack" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div> -->
     </div>
 </main>
 <footer>
