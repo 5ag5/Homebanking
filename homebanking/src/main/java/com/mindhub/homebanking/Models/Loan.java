@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,30 +13,32 @@ import static java.util.stream.Collectors.toList;
 
 @Entity
 public class Loan {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private String name;
     private double maxAmount;
-
     private double interest;
+    private double [][] listInst;
 
     @ElementCollection
     private List<Integer> payments;
 
-
-    @OneToMany(mappedBy ="loan", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     Set<ClientLoan> clientLoans = new HashSet<>();
-    public Loan() {}
 
-    public Loan(String name, double maxAmount, List<Integer> payments, double interest) {
+    public Loan(String name, double maxAmount, List<Integer> payments, double interest, double [][] listInst) {
         this.name = name;
         this.maxAmount = maxAmount;
         this.payments = payments;
         this.interest = interest;
+        this.listInst = listInst;
     }
+
+    public Loan() {
+    }
+
     public long getId() {
         return id;
     }
@@ -72,12 +75,13 @@ public class Loan {
         return clientLoans;
     }
 
-    public void addClientLoan(ClientLoan clientLoan){
+    public void addClientLoan(ClientLoan clientLoan) {
         clientLoan.setLoan(this);
         clientLoans.add(clientLoan);
     }
+
     @JsonIgnore
-    public List<Client> getClients(){
+    public List<Client> getClients() {
         return clientLoans.stream().map(loan -> loan.getClient()).collect(toList());
     }
 
@@ -87,5 +91,14 @@ public class Loan {
 
     public void setInterest(double interest) {
         this.interest = interest;
+    }
+
+
+    public double [][] getListInst() {
+        return listInst;
+    }
+
+    public void setListInst(double [][] listInst) {
+        this.listInst = listInst;
     }
 }

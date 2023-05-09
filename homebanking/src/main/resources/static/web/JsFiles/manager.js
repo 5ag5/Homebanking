@@ -3,14 +3,20 @@ const { createApp } = Vue
 const app = createApp( {
     data(){
         return {
-            clients:[ ],
+            clients:[],
             firstNam:'',
             lastNam: '',
-            emailInp:''
+            emailInp:'',
+            loansAvailable: [],
+            nameloan: undefined,
+            maximumAmount: undefined, 
+            numberOfPayments: undefined,
+            interestLoan: undefined
         }
     },
     created(){
             this.getData()
+            this.getLoanData()
     },
     methods: {
         async getData(){
@@ -20,10 +26,17 @@ const app = createApp( {
                 this.clients=elemento.data._embedded.clients    
                 console.log(elemento.data._embedded.clients)
                 console.log("este funciona")
+                console.log(this.loansAvailable)
             })
             }catch{
                 console.log(err)
             }
+        },
+
+        async getLoanData(){
+            axios.get('/api/loans').then(expected =>{
+                this.loansAvailable = expected
+            })
         },
 
         async addClient(){
@@ -51,6 +64,37 @@ const app = createApp( {
                     email: email
                 }
             });
+        },
+
+        createLoan(){
+            console.log(this.nameloan)
+            console.log(this.maximumAmount)
+            console.log(this.numberOfPayments)
+            console.log(this.interestLoan)
+
+            let arrayPayments = []
+            arrayPayments = this.numberOfPayments.split(",")
+            console.log(arrayPayments)
+
+            axios.post('/api/loans/newLoan',
+            {name:this.nameloan,
+            MaxAmount:this.maximumAmount,
+            payments: arrayPayments,
+            interest: this.interestLoan
+            }).then(response =>{
+                Swal.fire(
+                    'Transaction Succesful!',
+                    'Loan created succesfully',
+                    'success'
+                )
+            }).catch(err =>{
+                console.log(err)
+                Swal.fire({
+                    icon: "error",
+                    title: "Submit Error",
+                    text: err.response.data,
+            })
+        })
         },
 
         logOut(){

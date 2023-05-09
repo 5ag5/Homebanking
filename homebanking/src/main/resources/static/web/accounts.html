@@ -27,9 +27,9 @@
         <li class="nav-item">
             <a class="nav-link" href="./loan-application.html">Loan Appplication</a>
         </li>
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Support</a>
-        </li> -->
+        <li class="nav-item">
+            <a class="nav-link" href="./paymentCredits.html">Debt Payments</a>
+        </li>
         <!-- <li class="nav-item">
             <div id="searchBar">
                 <input id="search1" type="search" placeholder="Enter to Search">
@@ -66,6 +66,13 @@
                     <h4 class="card-title">Create a new Account</h4>
                     <p class="card-text">if you would like a new account, 
                     please press the button below</p>
+                    <div class="mb-3">
+                        <label for="disabledSelect" class="form-label">Select Account to Create</label>
+                        <select id="disabledSelect" class="form-select" v-model="accountChoise">
+                            <option value="CHECKING">CHECKING</option>
+                            <option value="SAVING">SAVING</option>
+                        </select>
+                    </div>
                     <button v-on:click="createAccount" type="button" class="btn btn-primary">Create</button>
                 </div>
             </div>
@@ -77,17 +84,21 @@
                     <th>Account Number</th>
                     <th>Balance</th>
                     <th>Creation Date</th>
+                    <th>Type of Account</th>
                     <th>Transaction Details</th>
+                    <th>Eliminate Account</th>
                 </thead>
                 <tbody>
                 <tr v-if="accounts.length !== 0" v-for="account of accounts">
                     <td>{{account.number}}</td>
                     <td>{{account.balance}}</td>
                     <td>{{account.creationDate}}</td>
+                    <td>{{account.typeAccount}}</td>
                     <td><a v-bind:href="'account.html?id='+account.id"><button type="button" class="btn btn-primary">Details</button></a></td>
+                    <td><button type="button" class="btn btn-danger" v-on:click="eliminateAccount(account.number)">Eliminate</button></td>
                 </tr>
                 <tr v-else>
-                    <td colspan="4">You don't have any accounts, please go to our Products page <a href="#">here!</a></td>
+                    <td colspan="6">You don't have any accounts, please go to our Products page <a href="#">here!</a></td>
                 </tr>
                 </tbody>
                 </tbody>
@@ -97,18 +108,20 @@
             <table class="table table-striped">
                 <h3>Loan List</h3>
                 <thead>
+                    <th>Loan ID</th>
                     <th>Loan Amount</th>
                     <th># Payments</th>
                     <th>Name Loan</th>
                 </thead>
                 <tbody>
                 <tr v-if="clientLoans.length !== 0" v-for="loan of clientLoans">
+                    <td>{{loan.serialNumber}}</td>
                     <td>{{loan.amount}}</td>
                     <td>{{loan.payments}}</td>
                     <td>{{loan.name}}</td>
                 </tr>
                 <tr v-else>
-                    <td colspan="4">You don't have any loans!, please go to our Products page <a href="#">here!</a></td>
+                    <td colspan="5">You don't have any loans!, please go to our Products page <a href="#">here!</a></td>
                 </tr>
                 </tbody>
                 </tbody>
@@ -120,27 +133,7 @@
     </main>
     <footer>
         <div class="divFooter">
-            <a id="idFooter" href="#">Search a Bank</a>
-            <a id="idFooter" href="#">Subscribe to especial promotions</a>
-            <a id="idFooter" href="#">Productos for Students</a>
-            <a id="idFooter" href="#">Comments about MindHub Brothers</a>
-        </div>
-        <div class="divFooter">
-            <h6 id="h6Id">Complains</h6>
-            <a id="idFooter" href="#">Contact</a>
-            <a id="idFooter" href="#">Product delivery status</a>
-        </div>
-        <div class="divFooter">
-            <h6 id="h6Id">About MindHub Brothers</h6>
-            <a id="idFooter" href="#">New Products</a>
-            <a id="idFooter" href="#">Work with us</a>
-            <a id="idFooter" href="#">Investors</a>
-            <a id="idFooter" href="#">Sustainability</a>
-        </div>
-        <div class="divFooter">
-            <h6 id="h6Id">Join Us</h6>
-            <a id="idFooter" href="#">MindHub Brothers App</a>
-            <a id="idFooter" href="#">Subscribe your e-mail</a>
+            <a id="idFooter" href="#">Copyright © 2023 MindHub Brother Inc. Todos los derechos reservados.</a>
         </div>
         <div class="div5Footer">
             <a href="https://www.instagram.com/"><ion-icon class="logosRedes" name="logo-instagram"></ion-icon></a>

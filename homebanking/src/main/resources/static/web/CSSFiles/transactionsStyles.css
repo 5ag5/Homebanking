@@ -73,7 +73,7 @@ footer{
     background-color:rgb(0,212,255);
     /* height: 10vh; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 

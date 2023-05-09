@@ -9,6 +9,16 @@ const app = createApp({
             numeroCuenta: undefined,
             params: undefined,
             id: undefined,
+            pdfYearFrom: [],
+            pdfYearTo: [],
+            pdfMonth: [],
+            pdfDay: [],
+            pdfYearFromVal: undefined,
+            pdfMonthFromVal: undefined,
+            pdfDayFromVal: undefined,
+            pdfYearToVal: undefined,
+            pdfMontToVal: undefined,
+            pdfDayToVal: undefined,
         }
     },
 
@@ -26,12 +36,20 @@ const app = createApp({
                     this.transactions = this.cuentas.transactions
                     this.transactions = this.transactions.sort((x,y) => y.id - x.id)
 
-                    console.log(this.id)
-                    console.log(this.cuentas)   
+                    console.log(this.cuentas)  
+                    console.log(this.transactions)
 
+                    let date1 = new Date()
+
+                    console.log(date1)
+
+                    this.filteAvailableDates()
                     this.callSumTransactions()
                     this.getNumeroCuenta()
+                    // this.updateAmountType()
                     this.convertirADolares()
+
+                    console.log(this.transactions)
                 } 
             )
         },
@@ -48,9 +66,56 @@ const app = createApp({
 
                 indiceT = element.date.indexOf("T")
                 element.date = element.date.slice(0,indiceT) + " " +  element.date.slice(indiceT+1,element.date.length)
+
+                element.currentBalance = element.currentBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
             })
 
             this.sumTransactions = this.sumTransactions.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+        },
+
+        PDFTransactions(){
+            console.log(this.pdfYearFromVal)
+            console.log(this.pdfMonthFromVal)
+            console.log(this.pdfDayFromVal)
+            console.log(this.pdfYearToVal)
+            console.log(this.pdfMontToVal)
+            console.log(this.pdfDayToVal)
+
+            let dateFrom = this.pdfYearFromVal + "-" + this.pdfMonthFromVal + "-" + this.pdfDayFromVal
+            let dateTo = this.pdfYearToVal + "-" + this.pdfMontToVal + "-" + this.pdfDayToVal
+            console.log(dateFrom)
+            console.log(dateTo)
+
+            if(this.pdfYearFromVal > this.pdfYearToVal){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error creating PDF',
+                    text: 'Year From cannot be higher than Year To',
+                })
+            }else if(this.pdfYearFromVal === undefined || this.pdfMonthFromVal === undefined || this.pdfDayFromVal === undefined
+                || this.pdfYearToVal === undefined || this.pdfMontToVal === undefined || this.pdfDayToVal === undefined){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error creating PDF',
+                        text: 'All values need to be filled in',
+                    })
+            }else{
+             axios.post('/api/transactions/transactionslist',`accountNumber=${this.numeroCuenta}&startDate=${dateFrom}&endDate=${dateTo}`,{responseType:'blob'}).then((response) =>{
+                console.log(response.data)
+                //`AccountNumber=VIN001`
+                const url = URL.createObjectURL(response.data)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = 'transactions_.pdf'
+                a.style.display = 'none'
+                document.body.appendChild(a)
+                a.click()
+                a.remove()
+                URL.revokeObjectURL(url)
+            }).catch(err =>{
+                console.log(err)
+            })
+            }
         },
 
         callSumTransactions(){
@@ -66,6 +131,40 @@ const app = createApp({
 
         },
 
+        // updateAmountType(){
+        //     this.transactions.forEach( element =>{
+        //     //element.amount = parseFloat(element.amount.substring(1,element.amount.length))
+        //     console.log(element.amount)
+        //     })
+        // },
+
+        filteAvailableDates(){
+            let tempYear = []
+            let tempMonth = []
+            let tempDay = []
+
+            this.transactions.forEach(element =>{
+                tempYear.push(element.date.substring(0,4))
+                tempMonth.push(element.date.substring(5,7))
+                tempDay.push(element.date.substring(8,10))
+            })
+
+            this.pdfYearFrom = tempYear.filter((item, index) =>
+                tempYear.indexOf(item) === index
+            )
+            this.pdfMonth = tempMonth.filter((item, index) =>
+                tempMonth.indexOf(item) === index
+            ) 
+            this.pdfDay = tempDay.filter((item, index) =>
+                tempDay.indexOf(item) === index
+            ) 
+
+            console.log(this.pdfYearFrom)
+            console.log(this.pdfMonth)
+            console.log(this.pdfDay)
+
+        },
+
         logOut(){
             console.log("funciona")
             axios.post('/api/logout').then(response => {
@@ -75,6 +174,10 @@ const app = createApp({
             .catch(err => console.log(err))
         }
     },
+
+    computed:{
+
+    }
 
 })
 

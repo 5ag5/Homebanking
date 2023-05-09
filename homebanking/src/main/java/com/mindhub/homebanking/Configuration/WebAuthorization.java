@@ -32,6 +32,7 @@ public class WebAuthorization {
                 .antMatchers("/web/create-cards.html").hasAuthority("CLIENT")
                 .antMatchers("/web/loan-application.html").hasAuthority("CLIENT")
                 .antMatchers("/web/transactions.html").hasAuthority("CLIENT")
+                .antMatchers("/web/paymentCredits.html").hasAuthority("CLIENT")
                 .antMatchers("/imagenes/**").permitAll()
                 .antMatchers("/JsFiles/**").permitAll()
                 .antMatchers("/CSSFiles/**").permitAll()
@@ -45,6 +46,9 @@ public class WebAuthorization {
 
                 .antMatchers(HttpMethod.POST, "/clients").permitAll();
                 //.anyRequest().denyAll();
+
+        //Cross-Origin Resource Sharing
+        http.cors().and().authorizeRequests();
 
         http.formLogin()
                 .usernameParameter("email")

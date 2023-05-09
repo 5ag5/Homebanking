@@ -17,6 +17,9 @@ public class ClientLoan {
     private int payments;
     private String tipoLoan;
     private double interest;
+    private String serialNumber;
+
+    private boolean status;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -29,11 +32,13 @@ public class ClientLoan {
 
     public ClientLoan(){}
 
-    public ClientLoan(double amount, int payments, String tipoLoan, double interest) {
+    public ClientLoan(double amount, String serialNumber, int payments, String tipoLoan, double interest) {
         this.amount = amount;
+        this.serialNumber = serialNumber;
         this.payments = payments;
         this.tipoLoan = tipoLoan;
         this.interest = interest;
+        this.status = true;
     }
 
     public long getId() {
@@ -90,5 +95,17 @@ public class ClientLoan {
 
     public void setInterest(double interest) {
         this.interest = interest;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
     }
 }

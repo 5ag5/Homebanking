@@ -8,6 +8,7 @@ const app = createApp({
             totalBalanceLoans: 0,
             clientes: [],
             cliente: undefined,
+            accountChoise: undefined,
             countingAccounts: 0,
             clientLoans: [],
             identificador: 0
@@ -89,10 +90,31 @@ const app = createApp({
             .catch(err => console.log(err))
         },
 
+        eliminateAccount(number){
+            console.log(number)
+
+            axios.post('/api/clients/current/accounts/delete',`account=${number}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+            .then(response =>{
+            swal.fire({
+                title:'Message Confirmation',
+                text: 'Your account has being Deleted',
+                icon:'success',
+                didOpen:() => {
+                    document.querySelector('.swal2-confirm').addEventListener('click', () =>{location.reload(true)})
+                },
+            })
+
+            }).catch(err => {
+                console.log(err)
+            })
+
+        },
+
         createAccount(){
             console.log("esto funciona")
-            axios.post('/api/clients/current/accounts').then( response =>{
-
+            console.log(this.accountChoise)
+            axios.post('/api/clients/current/accounts',`accountType=${this.accountChoise}`)
+            .then( response =>{
                 Swal.fire({
                     title:'Message Confirmation',
                     text: 'Your account has being created',
@@ -100,10 +122,19 @@ const app = createApp({
                     didOpen:() => {
                         document.querySelector('.swal2-confirm').addEventListener('click', () =>{location.reload(true)})
                     },
-                    }
-                )
+                })
+            }).catch(err =>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error creating account',
+                    text: err.response.data,
+                  })
             })
+        },
+
+        pdftransactions(){
         }
+
     },
 
     computed: {

@@ -3,17 +3,18 @@ package com.mindhub.homebanking.Controllers;
 import com.mindhub.homebanking.DTOs.AccountDTO;
 import com.mindhub.homebanking.Models.Account;
 import com.mindhub.homebanking.Models.Client;
+import com.mindhub.homebanking.Models.TypeAccount;
 import com.mindhub.homebanking.Repositories.AccountRepository;
 import com.mindhub.homebanking.Repositories.ClientRepository;
+import com.mindhub.homebanking.Service.AccountService;
+import com.mindhub.homebanking.Service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Access;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -23,27 +24,31 @@ import java.util.stream.Collectors;
 public class AccontController {
 
     @Autowired
-    private AccountRepository accountRepository;
+    AccountService accountService;
 
     @Autowired
-    private ClientRepository clientRepository;
-    @RequestMapping("/api/accounts")
+    ClientService clientService;
+
+    @GetMapping("/api/accounts")
         public List<AccountDTO> getAccounts(){
-            return accountRepository.findAll().stream().map(account -> new AccountDTO(account)).collect(Collectors.toList());
+            return accountService.getAccounts();
         }
 
-    @RequestMapping("/api/accounts/{id}")
+    @GetMapping("/api/accounts/{id}")
         public AccountDTO getAccount(@PathVariable Long id){
-        return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+        //return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+        return accountService.getAccount(id);
     }
 
-    @RequestMapping(path ="/api/clients/current/accounts", method= RequestMethod.POST )
-    public ResponseEntity<Object> createAccount(Authentication authentication) {
-        Client client = clientRepository.findByEmail(authentication.getName());
-        int sizeSet = client.getAccounts().size();
+    @PostMapping(path ="/api/clients/current/accounts")
+    public ResponseEntity<Object> createAccount(Authentication authentication, @RequestParam TypeAccount accountType) {
+        //return accountService.createAccount(authentication,accountType);
+
+        Client client = clientService.findByEmail(authentication.getName());
+        int sizeSet = client.getAccounts().stream().filter(account -> account.isStatus()).collect(Collectors.toSet()).size();
 
         if (sizeSet > 2) {
-            return new ResponseEntity<>("Reached above limit", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>("Reached above limit of accounts allowed.", HttpStatus.FORBIDDEN);
         } else {
             int min = 5;
             int max = 999999;
@@ -55,13 +60,21 @@ public class AccontController {
             String date1Tem = creationDate.format(formatter);
             LocalDateTime date1f = LocalDateTime.parse(date1Tem, formatter);
 
-            Account account = new Account(number, balance, date1f);
+            Account account = new Account(number, balance, date1f, accountType);
 
             client.addAccount(account);
-            accountRepository.save(account);
+            clientService.SaveAccount(account);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
+
     }
 
+    @PostMapping(path = "/api/clients/current/accounts/delete")
+    public ResponseEntity<Object> eliminateAccount (@RequestParam String account) {
+        Account accountDel = accountService.findByNumber(account);
+        accountDel.setStatus(false);
+        accountService.SaveAccount(accountDel);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 }
 

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSSFiles/loan-aplicationStyles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Loan-Application</title>
+</head>
+<body id="app">
+    <header>
+        <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
+    </header>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./cards.html">Cards</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./create-cards.html">Order a new Card</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./transactions.html">Transactions Accounts</a>
+        </li>
+        <li class="nav-item">
+            <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
+        </li>
+    </ul>
+    <main>
+        <h1>Loan Requests</h1>
+        <div class="divFormCard">
+            <form class="formLoansRequest">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Amount to Request</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="amountRequested">
+                        <div id="emailHelp" class="form-text">Add the amount that you would like as a loan</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Type of loan To Choose</label>
+                        <select class="form-select" aria-label="Default select example" v-model="typeLoanChosen" v-on:change="getNumberOfPayments">
+                            <option selected>Open this select menu</option>
+                            <option v-bind:value="type" v-for="type of typeLoan">{{type}}</option>
+                        </select>
+                        <div id="emailHelp" class="form-text">Please choose the number of Payments to be made on the loan</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Number of Payments</label>
+                        <select class="form-select" aria-label="Default select example" v-model="numberPaymentChosen">
+                            <option selected>Open this select menu</option>
+                            <option v-bind:value="payment" v-for="payment of numberOfPayments">{{payment}}</option>
+                        </select>
+                    <div id="emailHelp" class="form-text">Please choose the number of Payments to be made on the loan</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Account Destination</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="accountDestination" v-on:click="loanSimulation">
+                        <div id="emailHelp" class="form-text">Please add the account destination</div>
+                    </div>
+                    <button type="button" class="btn btn-primary" v-on:click="submitLoanRequest">Submit</button>
+            </form>
+            <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">Loan Simulator</h4>
+                        <h5 class="card-subtitle mb-2 text-body-secondary">Your Loan with the conditions chosen</h5>
+                        <h6>Amount:<h5>${{amountRequested}}</h5></h6>
+                        <h6>Interest Rate:<h5>% {{interestRateNewLoan}}</h5></h6>
+                        <h6># of Payments:<h5>{{numberPaymentChosen}}</h5></h6>
+                        <h6>Monthly Payment: <h5>${{monthlyPayment}}</h5></h6>
+                    </div>
+            </div>
+        </div>
+    </main>
+    <div class="botonClase">
+        <a href="#"><ion-icon class="buttonUp" name="arrow-up-outline"></ion-icon></a>
+    </div>
+    <footer>
+        <div class="divFooter">
+            <a id="idFooter" href="#">Search a Bank</a>
+            <a id="idFooter" href="#">Subscribe to especial promotions</a>
+            <a id="idFooter" href="#">Productos for Students</a>
+            <a id="idFooter" href="#">Comments about MindHub Brothers</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">Complains</h6>
+            <a id="idFooter" href="#">Contact</a>
+            <a id="idFooter" href="#">Product delivery status</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">About MindHub Brothers</h6>
+            <a id="idFooter" href="#">New Products</a>
+            <a id="idFooter" href="#">Work with us</a>
+            <a id="idFooter" href="#">Investors</a>
+            <a id="idFooter" href="#">Sustainability</a>
+        </div>
+        <div class="divFooter">
+            <h6 id="h6Id">Join Us</h6>
+            <a id="idFooter" href="#">MindHub Brothers App</a>
+            <a id="idFooter" href="#">Subscribe your e-mail</a>
+        </div>
+        <div class="div5Footer">
+            <a href="https://www.instagram.com/"><ion-icon class="logosRedes" name="logo-instagram"></ion-icon></a>
+            <a href="https://www.facebook.com/"><ion-icon class="logosRedes" name="logo-facebook"></ion-icon></a>
+            <a href="https://twitter.com/home"><ion-icon class="logosRedes" name="logo-twitter"></ion-icon></a>
+            <a href="https://www.youtube.com/"><ion-icon class="logosRedes" name="logo-youtube"></ion-icon></a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js" integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="./JsFiles/loan-aplication.js"></script>
+</body>
+</html>

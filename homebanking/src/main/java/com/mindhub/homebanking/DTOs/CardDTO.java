@@ -3,6 +3,7 @@ package com.mindhub.homebanking.DTOs;
 import com.mindhub.homebanking.Models.CardColor;
 import com.mindhub.homebanking.Models.Card;
 import com.mindhub.homebanking.Models.CardType;
+import org.hibernate.tool.schema.internal.exec.ScriptSourceInputFromReader;
 
 import java.time.LocalDate;
 
@@ -16,18 +17,21 @@ public class CardDTO {
     private LocalDate thruDate;
     private LocalDate fromDate;
 
+    private boolean status;
+
     public CardDTO(){
     }
 
-    public CardDTO(Card creditcard) {
-        this.id = creditcard.getId();
-        this.cardHolder = creditcard.getCardHolder();;
-        this.type = creditcard.getType();;
-        this.cardColor = creditcard.getColor();;
-        this.number = creditcard.getNumber();;
-        this.cvv = creditcard.getCvv();;
-        this.thruDate = creditcard.getThruDate();;
-        this.fromDate = creditcard.getFromDate();;
+    public CardDTO(Card card) {
+        this.id = card.getId();
+        this.cardHolder = card.getCardHolder();;
+        this.type = card.getType();;
+        this.cardColor = card.getColor();;
+        this.number = card.getNumber();;
+        this.cvv = card.getCvv();;
+        this.thruDate = card.getThruDate();;
+        this.fromDate = card.getFromDate();;
+        this.status = card.isStatus();
     }
 
     public long getId() {
@@ -60,5 +64,9 @@ public class CardDTO {
 
     public LocalDate getFromDate() {
         return fromDate;
+    }
+
+    public boolean isStatus() {
+        return status;
     }
 }

@@ -7,5 +7,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RepositoryRestResource
 public interface ClientLoanRepository extends JpaRepository<ClientLoan, Long> {
-
+    ClientLoan findBySerialNumber (String serialNumber);
 }

@@ -11,8 +11,10 @@ const app = createApp({
             tarjetaDebito: [], 
             tarjetaCredito: [],
             numeroTarjetaDebito: [],
-            numeroTarjetaCredito: []
-
+            numeroTarjetaCredito: [],
+            nmrTrjt: undefined,
+            currentMonth: undefined,
+            currentYear: undefined
         }
     },
 
@@ -29,8 +31,15 @@ const app = createApp({
                 this.datos = elemento
                 this.nombre = elemento.data.firstName + " " + elemento.data.lastName
                 this.tarjetas = elemento.data.cards
-                
+
+                const currentDate = new Date()
+                this.currentMonth = currentDate.getMonth()
+                this.currentYear = currentDate.getFullYear()
+
                 console.log(this.tarjetas)
+                console.log(this.currentMonth)
+                console.log(this.currentYear)
+
                 // console.log(this.numeroTarjetaCredito)
                 // console.log(this.tarjetas)
 
@@ -60,6 +69,8 @@ const app = createApp({
                 element.numero2 = element.number.substring(4,8);
                 element.numero3 = element.number.substring(8,12);
                 element.numero4 = element.number.substring(12,16);
+                element.yearExpDate = parseInt(element.thruDate.substring(0,4))
+                element.monthExpDate = parseInt(element.thruDate.substring(5,7))
             })
 
             this.tarjetaCredito.forEach(element => {
@@ -67,6 +78,8 @@ const app = createApp({
                 element.numero2 = element.number.substring(4,8);
                 element.numero3 = element.number.substring(8,12);
                 element.numero4 = element.number.substring(12,16);
+                element.yearExpDate = parseInt(element.thruDate.substring(0,4))
+                element.monthExpDate = parseInt(element.thruDate.substring(5,7))
             })
         },
 
@@ -74,7 +87,6 @@ const app = createApp({
             this.tarjetas.forEach(element => {
                 element.number = element.number.replaceAll("-","")
                 element.thruDate = element.thruDate.substring(0,7)
-                console.log(element.thruDate.substring(0,7))
             });
         },
 
@@ -86,6 +98,31 @@ const app = createApp({
             })
             .catch(err => console.log(err))
         },
+
+        deleteCard(number){
+            console.log("funciona")
+            console.log(number)
+         
+            const number1 = number.substring(0,4);
+            const number2 = number.substring(4,8);
+            const number3 = number.substring(8,12);
+            const number4 = number.substring(12,16);
+
+            const numFinal = number1 + "-" + number2 + "-" + number3 + "-" + number4
+
+            axios.post('/api/clients/current/cards/delete',`cardNumber=${numFinal}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+            .then( response=>{
+                Swal.fire({
+                    title:'Message Confirmation',
+                    text: 'Your Credit Card has being deleted',
+                    icon:'success',
+                    didOpen:() => {
+                        document.querySelector('.swal2-confirm').addEventListener('click', () =>{location.reload(true)})
+                    },
+                })
+            }).catch(err =>
+                console.log(err))
+        }
 
     },
 })

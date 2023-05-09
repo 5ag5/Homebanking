@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" integrity="sha256-sWZjHQiY9fvheUAOoxrszw9Wphl3zqfVaz1kZKEvot8=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSSFiles/paymentCreditsStyles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Payment Credits</title>
+</head id="app">
+<body>
+<header>
+    <img id="iconoBan" src="./imagenes/MindHub_Brothers__2.png" alt="">
+</header>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="./cards.html">Cards</a>
+    </li>
+    <li class="nav-item">
+        <a id="orderNewCardAlert" class="nav-link" href="./create-cards.html">Order New Cards</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="./transactions.html">Transactions Accounts</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="./loan-application.html">Loan-Application</a>
+    </li>
+    <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Support</a>
+    </li> -->
+    <!-- <li class="nav-item">
+        <div id="searchBar">
+            <input id="search1" type="search" placeholder="Enter to Search">
+            <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
+        </div>
+    </li> -->
+    <li class="nav-item">
+        <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
+    </li>
+</ul>
+<main id="app">
+    <h1>Debt Payment</h1>
+    <div class="divFormCard">
+        <form class="paymentLoanForm" @submit.prevent = "payLoan">
+            <!-- <fieldset>
+            <legend>Payment</legend> -->
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Account to be Paid</label>
+                <select id="disabledSelect" class="form-select" v-model="selectedLoan" v-on:click="getBalanceLoans">
+                    <option selected>Open this select menu</option>
+                    <option v-bind:value="loan.serialNumber" v-for="loan of outstandingLoans">{{loan.serialNumber}}</option>
+                </select>
+                <div id="emailHelp" class="form-text">Choose a Loan you wish to pay.</div>
+            </div>
+            <div class="mb-3">
+                <label for="disabledSelect" class="form-label">Chose an Account to Debit from</label>
+                <select id="disabledSelect" class="form-select" v-model="accountSelected">
+                    <option selected>Open this select menu</option>
+                    <option v-bind:value="account.number" v-for="account of clientAccounts">{{account.number}}</option>
+                </select>
+                <div id="emailHelp" class="form-text">Choose an account to pay your debt.</div>
+            </div>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Number of Payments to be Payed</label>
+                <input type="number" id="disabledTextInput" class="form-control" v-model="paymentsChosen">
+                <div id="emailHelp" class="form-text">Add number of payments to be payed.</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+        </form>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Account Details</h5>
+                <h6 class="card-subtitle mb-2 text-body-secondary">account Details for Loan {{selectedLoan}}</h6>
+                <p class="card-text">Balance Outstanding:<p>${{balanceRemaining}}</p></p>
+                <p class="card-text">Number of Payments:<p>{{paymentsRemaining}}</p></p>
+                </div>
+            </div>
+    </div>
+</main>
+<footer>
+    <div class="divFooter">
+        <a id="idFooter" href="#">Copyright © 2023 MindHub Brother Inc. Todos los derechos reservados.</a>
+    </div>
+    <div class="div5Footer">
+        <a href="https://www.instagram.com/"><ion-icon class="logosRedes" name="logo-instagram"></ion-icon></a>
+        <a href="https://www.facebook.com/"><ion-icon class="logosRedes" name="logo-facebook"></ion-icon></a>
+        <a href="https://twitter.com/home"><ion-icon class="logosRedes" name="logo-twitter"></ion-icon></a>
+        <a href="https://www.youtube.com/"><ion-icon class="logosRedes" name="logo-youtube"></ion-icon></a>
+    </div>
+</footer>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js" integrity="sha256-t0FDfwj/WoMHIBbmFfuOtZv1wtA977QCfsFR3p1K4No=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script src="./JsFiles/paymentCredits.js"></script>
+</body>
+</html>

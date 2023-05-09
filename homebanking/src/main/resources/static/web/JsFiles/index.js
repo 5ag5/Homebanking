@@ -23,7 +23,11 @@ const app = createApp({
             axios.post('/api/login',`email=${this.usuario}&password=${this.contrasena}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
             .then(response => {
                 console.log('signed in!!!')
-                window.location.href = '/web/accounts.html'
+                if(this.usuario.includes('emailAdmin.com')){
+                    window.location.href = '/web/manager.html'
+                }else{
+                    window.location.href = '/web/accounts.html'
+                }
                 })
                 .catch(err => {
                     console.log(err)
@@ -34,23 +38,6 @@ const app = createApp({
                     })
                 });
         },
-
-        loginManager(){
-            
-            axios.post('/api/login',`email=${this.usuario}&password=${this.contrasena}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
-            .then(response =>{
-                window.location.href = '/web/manager.html'
-                console.log("this is correct")
-            }).catch(err =>{
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Issue Loging in as Manager',
-                    text: err.response.data,
-                })
-
-                console.log(err)
-            })
-        }
 
     },  
 
