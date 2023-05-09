@@ -18,23 +18,20 @@
             <a class="nav-link" aria-current="page" href="./accounts.html">Accounts</a>
         </li>
         <li class="nav-item">
-            <a href="./cards.html" class="nav-link" aria-current="page">Credit Cards</a>
+            <a href="./cards.html" class="nav-link" aria-current="page">Cards</a>
         </li>
         <li class="nav-item">
             <a id="currentPage" href="./transactions.html" class="nav-link" aria-current="page">Transactions Accounts</a>
         </li>
-        <!-- <li class="nav-item">
-            <div id="searchBar">
-                <input id="search1" type="search" placeholder="Enter to Search">
-                <button id="search2" type="submit"><ion-icon class="searchButton" name="search-outline"></ion-icon></button>
-            </div>
-        </li> -->
+        <li class="nav-item">
+            <a id="currentPage" href="./loan-application.html" class="nav-link" aria-current="page">Loan-Applications</a>
+        </li>
         <li class="nav-item">
             <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
         </li>
     </ul>
-<main>
     <h1>Request a new Card</h1>
+<main>
     <div id="DivCarroAndForm">
         <div>
             <form class = "formularioCreateCard" @submit.prevent="createCardMethod">
@@ -45,6 +42,7 @@
                         <option value="DEBIT">DEBIT</option>
                         <option value="CREDIT">CREDIT</option>
                     </select>
+                    <div id="emailHelp" class="form-text">Please select the card that you would like to order.</div>
                 </div>
                 <div class="divFormCreate">
                     <label for="InputLabel" class="form-label">Type of Color</label>
@@ -54,6 +52,7 @@
                         <option value="SILVER">SILVER</option>
                         <option value="TITANIUM">TITANIUM</option>
                     </select>
+                <div id="emailHelp" class="form-text">Please select the order that you would like to order.</div>
                 </div>
                 <div class="m-3">
                     <button type="submit"class="btn btn-primary">Submit</button>
@@ -63,19 +62,19 @@
 
         <div id="cuerpoCartas">
             <div class="card" style="width: 18rem;">
-                <img src="./imagenes/MindHub Brothers Gold.png" class="card-img-top" alt="...">
+                <img id="imgCard" src="./imagenes/MindHub Brothers Gold.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">Gold Credit card, if you are a frequent traveler and would like extra miles!</p>
                 </div>
               </div>
               <div class="card" style="width: 18rem;">
-                <img src="./imagenes/MindHub Brothers Silver.png" class="card-img-top" alt="...">
+                <img id="imgCard" src="./imagenes/MindHub Brothers Silver.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">If you are a frequent buyer and would like to get cash back on all your transactions.</p>
                 </div>
               </div>
               <div class="card" style="width: 18rem;">
-                <img src="./imagenes/MindHub Brothers Titanium.png" class="card-img-top" alt="...">
+                <img id="imgCard" src="./imagenes/MindHub Brothers Titanium.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">This is for our premium clients with discounts on all transactions made!</p>
                 </div>

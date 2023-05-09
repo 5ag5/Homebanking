@@ -30,16 +30,25 @@ const app = createApp({
                     Swal.fire({
                         icon: "error",
                         title: "Login Error",
-                        text: "Incorrect informacion Added or User doesn't excist"
+                        text: "User doesn't exist, or incorrect validation information",
                     })
                 });
         },
 
         loginManager(){
-            axios.post('api/login',`email=${this.usuario}&password=${this.contrasena}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
+            
+            axios.post('/api/login',`email=${this.usuario}&password=${this.contrasena}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
             .then(response =>{
-                // window.location.href = '/web/manager.html'
+                window.location.href = '/web/manager.html'
                 console.log("this is correct")
+            }).catch(err =>{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Issue Loging in as Manager',
+                    text: err.response.data,
+                })
+
+                console.log(err)
             })
         }
 

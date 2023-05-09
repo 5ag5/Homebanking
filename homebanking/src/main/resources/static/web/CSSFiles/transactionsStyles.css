@@ -28,7 +28,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
 }
 
 h1{
@@ -113,8 +113,14 @@ footer{
 }
 
 #divTabla{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 11%;
     margin-right: 11%;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .div5Footer{
@@ -172,4 +178,20 @@ ion-icon{
     background-color: rgb(9,65,121) ;
     border-radius: 2rem;
     padding: 10px;
+}
+
+#imgPromo{
+    object-fit: contain;
+    height: 40%;
+    width: 40%;
+    /* margin-left: 11%; */
+}
+
+.botonClase{
+    display: flex;
+    justify-content: end;
+    align-content: end;
+    position: sticky;
+    bottom: 5px;
+    margin: 0;
 }

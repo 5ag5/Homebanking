@@ -25,7 +25,7 @@ public class Card {
     private LocalDate fromDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="CreditCard_id")
+    @JoinColumn(name="Card_id")
     private Client client;
 
     public Card() {}

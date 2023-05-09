@@ -25,12 +25,14 @@
             <a class="nav-link" href="./create-cards.html">Order a new Card</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="./loan-application.html">Loan Applications</a>
+        </li>
+        <li class="nav-item">
             <a href="#" v-on:click="logOut"><ion-icon class ="botonLogOut" name="log-out-outline"></ion-icon></a>
         </li>
     </ul>
     <main>
-    <h1>TRANSACTIONS</h1>
-
+    <h1>MONEY TRANSFER BETWEEN ACCOUNTS</h1>
     <div id="divTabla">
         <form class="formTransactions">
             <div class="mb-3">
@@ -48,6 +50,11 @@
                     <option value="THIRD">THIRD</option>
                 </select>
             <div id="emailHelp" class="form-text">Wil this transfer be to your own account or to somebody else?</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Description of Transaction</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" v-model="description">
+                <div id="emailHelp" class="form-text">Brief description of transaction</div>
             </div>
                 <template v-if="destinationType === 'OWN'">
                     <div class="mb-3">
@@ -78,17 +85,11 @@
             </template>
             <button type="button" class="btn btn-primary" v-on:click="transferTransactions">Submit</button>
         </form>
-    </div>
-
-
-
-
-
-
-    <div class="botonClase">
-        <!-- v-on:click="logOut" -->
-        <a href="#"><ion-icon class="buttonUp" name="arrow-up-outline"></ion-icon></a>
-    </div>
+            <img id="imgPromo" src="./imagenes/money-transfer.jpg" alt="MoneyTransfer">
+        </div>
+        <div class="botonClase">
+            <a href="#"><ion-icon class="buttonUp" name="arrow-up-outline"></ion-icon></a>
+        </div>
     </main>
     <footer>
         <div class="divFooter">

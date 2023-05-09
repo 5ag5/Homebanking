@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 public class ClientController {
     private Client client;
+
     @Autowired
     private ClientRepository clientRepository;
 

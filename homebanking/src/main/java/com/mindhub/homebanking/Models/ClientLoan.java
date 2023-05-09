@@ -9,13 +9,14 @@ import java.util.List;
 @Entity
 public class ClientLoan {
 
-@Id
+    @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 @GenericGenerator(name = "native", strategy = "native")
     private long id;
     private double amount;
     private int payments;
     private String tipoLoan;
+    private double interest;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")
@@ -28,10 +29,11 @@ public class ClientLoan {
 
     public ClientLoan(){}
 
-    public ClientLoan(double amount, int payments, String tipoLoan) {
+    public ClientLoan(double amount, int payments, String tipoLoan, double interest) {
         this.amount = amount;
         this.payments = payments;
         this.tipoLoan = tipoLoan;
+        this.interest = interest;
     }
 
     public long getId() {
@@ -80,5 +82,13 @@ public class ClientLoan {
 
     public void setLoan(Loan loan) {
         this.loan = loan;
+    }
+
+    public double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(double interest) {
+        this.interest = interest;
     }
 }

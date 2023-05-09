@@ -38,7 +38,6 @@
     </ul>
     <main id="app">
         <h1>WELCOME TO MINDHUB BROTHERS</h1>
-
         <form class = "formularioLogin" @submit.prevent="postUsuario"> 
             <div class="divFormLogIn">
                 <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -53,7 +52,8 @@
                 <button type="submit" class="btn btn-primary" value="log In">Submit</button>
             </div>
             <fieldset class="fieldset2">
-                <a class="loginUsuariosAlternos" href="#" v-on:click="loginManager">Login as Manager</a>
+                <button type="button" class="btn btn-primary" v-on:click="loginManager">Login as Manager</button>
+                <!-- <button class="loginUsuariosAlternos" v-on:click="loginManager">Login as Manager</button> -->
                 <a class="loginUsuariosAlternos" href="./newUser.html">Register as New User</a>
             </fieldset>
         </form>

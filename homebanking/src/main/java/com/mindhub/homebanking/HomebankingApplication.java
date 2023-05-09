@@ -34,7 +34,6 @@ public class HomebankingApplication {
 									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
 									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
 		return (args) -> {
-			//Client admin = new Client("admin, "admin","admin@email.com","admin1234").AuthorityUtils.createAuthorityList("ADMIN");
 			Client admin = new Client("admin","admin","admin@emailAdmin.com",passwordEnconder.encode("admin1234"));
 
 			Client cliente1 = new Client("Melba", "Morel", "melba@mindhub.com",passwordEnconder.encode("melba"));
@@ -71,15 +70,15 @@ public class HomebankingApplication {
 			List<Integer> payments2 = List.of(6,12,24);
 			List<Integer> payments3 = List.of(6,12,24,36);
 
-			Loan hipotecario = new Loan("House Loan", 500000,payments1);
-			Loan personal = new Loan("Persona Loan",100000,payments2);
-			Loan automotriz = new Loan("Car Loan", 300000,payments3);
+			Loan hipotecario = new Loan("House Loan", 500000,payments1, 8.5);
+			Loan personal = new Loan("Persona Loan",100000,payments2, 25.5);
+			Loan automotriz = new Loan("Car Loan", 300000,payments3, 15);
 
-			ClientLoan clientLoan1 = new ClientLoan(400000,60,"House Loan");
-			ClientLoan clientLoan11 = new ClientLoan(50000,12,"Persona Loan");
+			ClientLoan clientLoan1 = new ClientLoan(400000,60,"House Loan", hipotecario.getInterest());
+			ClientLoan clientLoan11 = new ClientLoan(50000,12,"Persona Loan", personal.getInterest());
 
-			ClientLoan clientLoan2 = new ClientLoan(100000,24,"Persona Loan");
-			ClientLoan clientLoan21 = new ClientLoan(200000,36,"Car Loan");
+			ClientLoan clientLoan2 = new ClientLoan(100000,24,"Persona Loan",personal.getInterest());
+			ClientLoan clientLoan21 = new ClientLoan(200000,36,"Car Loan", automotriz.getInterest());
 
 			LocalDate date1LC = LocalDate.now();
 
