@@ -22,14 +22,14 @@ import static com.mindhub.homebanking.Models.TypeTransaction.DEBITO;
 @SpringBootApplication
 public class HomebankingApplication {
 
-	@Autowired
-	private PasswordEncoder passwordEnconder;
+	//@Autowired
+	//private PasswordEncoder passwordEnconder;
 	public static void main(String[] args) {
 		SpringApplication.run(HomebankingApplication.class);
 
 	}
 
-	@Bean
+	/*@Bean
 	public CommandLineRunner initData(ClientRepository repository, AccountRepository Accountrepository,
 									  TransactionRepository TransactionRepository, LoanRepository loanRepository,
 									  ClientLoanRepository clientLoanRepository, CardRepository cardRepository) {
@@ -155,7 +155,6 @@ public class HomebankingApplication {
 			cardRepository.save(card2);
 			cardRepository.save(card3);
 
-		};
+		};*/
 	}
 
-}
