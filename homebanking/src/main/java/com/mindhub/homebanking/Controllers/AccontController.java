@@ -18,6 +18,8 @@ import javax.persistence.Access;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,8 +37,7 @@ public class AccontController {
         }
 
     @GetMapping("/api/accounts/{id}")
-        public AccountDTO getAccount(@PathVariable Long id){
-        //return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+    public AccountDTO getAccount(@PathVariable Long id, Authentication authentication){
         return accountService.getAccount(id);
     }
 

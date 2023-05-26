@@ -38,12 +38,12 @@ public class WebAuthorization {
                 .antMatchers("/CSSFiles/**").permitAll()
                 .antMatchers("/api/login").permitAll()
                 .antMatchers("/api/clients/current/accounts").hasAuthority("CLIENT")
+                .antMatchers("/api/clients/**").hasAuthority("CLIENT")
                 .antMatchers("/api/clients/current/cards").hasAuthority("CLIENT")
                 .antMatchers("/api/clients/current").hasAuthority("CLIENT")
                 .antMatchers("/api/transactions").hasAuthority("CLIENT")
+                .antMatchers("/api/accounts/**").hasAuthority("CLIENT")
                 .antMatchers("/api/loans").hasAuthority("CLIENT")
-
-
                 .antMatchers(HttpMethod.POST, "/clients").permitAll();
                 //.anyRequest().denyAll();
 
@@ -79,7 +79,6 @@ public class WebAuthorization {
         if (session != null) {
             session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
         }
-
     }
 
 }

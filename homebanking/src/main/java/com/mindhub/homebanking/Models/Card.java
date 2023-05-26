@@ -13,7 +13,6 @@ public class Card {
     @GenericGenerator(name = "native", strategy = "native")
 
     private long id;
-
     private String firstName;
     private String lastName;
     private String cardHolder;

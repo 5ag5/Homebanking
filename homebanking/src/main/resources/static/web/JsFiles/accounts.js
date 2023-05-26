@@ -92,7 +92,22 @@ const app = createApp({
 
         eliminateAccount(number){
             console.log(number)
+            let account = 0
+            let valueBalance = 0
 
+            this.accounts.forEach( element =>{
+                if(element.number === number){
+                    account = element
+                }  
+            })
+
+            console.log(account)
+
+            valueBalance = parseFloat(account.balance.slice(1,account.balance.length))
+            console.log(valueBalance)
+
+            if(valueBalance <=0){
+                console.log('se borra')
             axios.post('/api/clients/current/accounts/delete',`account=${number}`,{headers:{'content-type':'application/x-www-form-urlencoded'}})
             .then(response =>{
             swal.fire({
@@ -107,7 +122,21 @@ const app = createApp({
             }).catch(err => {
                 console.log(err)
             })
+            }else{
+                console.log('No se borra')
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error errasing account',
+                    text: 'account still has a balance, it cannot be deleted'
+                  })
+            }
 
+        },
+
+        openAccountDetails(id){
+            console.log(id)
+            localStorage.setItem( 'accountID', JSON.stringify(id))
+            window.location.href = '/web/account.html'
         },
 
         createAccount(){

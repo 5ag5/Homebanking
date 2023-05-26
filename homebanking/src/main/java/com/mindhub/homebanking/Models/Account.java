@@ -20,6 +20,8 @@ public class Account {
     private double balance;
     private LocalDateTime creationDate;
     private boolean status;
+
+    @Enumerated(EnumType.STRING)
     private TypeAccount accountType;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="client_id")

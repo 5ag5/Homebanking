@@ -50,9 +50,7 @@ public ResponseEntity<Object> loanRequest(Authentication authentication,
     Account accountDestination = accountService.findAccountByNunber(loanAplication);
     Loan loanSolicited = loanService.findLoanByName(loanAplication);
 
-//Verificar que los datos sean correctos,
-// es decir no estén vacíos, que el monto
-// no sea 0 o que las cuotas no sean 0.
+//Verificar que los datos sean correctos, es decir no estén vacíos, que el monto no sea 0 o que las cuotas no sean 0.
 
     if(loanAplication.getAmount() == 0 || loanAplication.getPayments() == 0 || loanAplication.getTipoLoan().isBlank() || loanAplication.getAccountDestination().isBlank()){
         return new ResponseEntity<>("Values are empty, pleaser fill in all", HttpStatus.FORBIDDEN);
@@ -154,9 +152,9 @@ public List<LoanDTO> getAvailableLoans(){
 
         double paymentToBePayed = (loan.getAmount()/ loan.getPayments())*numberOfPayments;
 
-        /*if(paymentToBePayed > account.getBalance()){
+        if(paymentToBePayed > account.getBalance()){
             return new ResponseEntity<>("You don't have enough funds", HttpStatus.FORBIDDEN);
-        }*/
+        }
 
         loan.setAmount(loan.getAmount()-paymentToBePayed);
         loan.setPayments(loan.getPayments()-numberOfPayments);

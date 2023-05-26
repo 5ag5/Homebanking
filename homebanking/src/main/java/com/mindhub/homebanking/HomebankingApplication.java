@@ -54,9 +54,12 @@ public class HomebankingApplication {
 
 			Account account1 = new Account("VIN001", 5000.00, date1f.minusYears(4), TypeAccount.CHECKING);
 			Account account2 = new Account("VIN002", 7500.00, date2f,TypeAccount.SAVING);
+			Account account5 = new Account("VIN005", 0, date2f,TypeAccount.CHECKING);
+
 
 			Account account3 = new Account("VIN003", 9000.00, date1f,TypeAccount.CHECKING);
 			Account account4 = new Account("VIN004", 12500.00, date2f,TypeAccount.CHECKING);
+
 
 			Transaction transaction1 = new Transaction(TypeTransaction.DEBITO, 565.67, "beer purchase", date1f.minusYears(4),5008.38);
 			Transaction transaction12 = new Transaction(TypeTransaction.DEBITO, 325.52, "tequila purchase", date2f,5574.35);
@@ -107,6 +110,8 @@ public class HomebankingApplication {
 
 			cliente1.addAccount(account1);
 			cliente1.addAccount(account2);
+			cliente1.addAccount(account5);
+
 			cliente2.addAccount(account3);
 			cliente2.addAccount(account4);
 
@@ -134,6 +139,7 @@ public class HomebankingApplication {
 			Accountrepository.save(account2);
 			Accountrepository.save(account3);
 			Accountrepository.save(account4);
+			Accountrepository.save(account5);
 
 			TransactionRepository.save(transaction1);
 			TransactionRepository.save(transaction12);

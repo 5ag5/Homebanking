@@ -94,7 +94,8 @@
                     <td>{{account.balance}}</td>
                     <td>{{account.creationDate}}</td>
                     <td>{{account.typeAccount}}</td>
-                    <td><a v-bind:href="'account.html?id='+account.id"><button type="button" class="btn btn-primary">Details</button></a></td>
+                    <!-- <td><a v-bind:href="'account.html?id='+account.id"><button type="button" class="btn btn-primary">Details</button></a></td> -->
+                    <td><button type="button" class="btn btn-primary" v-on:click="openAccountDetails(account.id)">Details</button></td>
                     <td><button type="button" class="btn btn-danger" v-on:click="eliminateAccount(account.number)">Eliminate</button></td>
                 </tr>
                 <tr v-else>

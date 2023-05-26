@@ -3,9 +3,11 @@ const {createApp} = Vue;
 const app = createApp({
     data(){
         return {
+            idAccount: undefined,
             transactions: undefined,
             sumTransactions: 0,
             cuentas: undefined,
+            tempAccounts: [],
             numeroCuenta: undefined,
             params: undefined,
             id: undefined,
@@ -30,9 +32,16 @@ const app = createApp({
 
     methods:{
         async getData(){
-            axios.get('http://localhost:8080/api/accounts/' + this.id)
+            //axios.get('http://localhost:8080/api/accounts/current/'+this.id)
+            //axios.get('http://localhost:8080/api/accounts/current')
+            axios.get('http://localhost:8080/api/clients/current/')
             .then(elemento =>{
-                    this.cuentas = elemento.data
+                    this.idAccount = JSON.parse(localStorage.getItem('accountID') || 0)
+                    console.log(this.idAccount)  
+                    this.tempAccounts = elemento.data.accounts
+
+                    this.findAccount()
+
                     this.transactions = this.cuentas.transactions
                     this.transactions = this.transactions.sort((x,y) => y.id - x.id)
 
@@ -52,6 +61,16 @@ const app = createApp({
                     console.log(this.transactions)
                 } 
             )
+        },
+
+        findAccount(){
+            for(let i =0; i < this.tempAccounts.length; i++){
+                if(this.tempAccounts[i].id === this.idAccount){
+                    this.cuentas = this.tempAccounts[i]
+                }
+            }
+            this.tempAccounts = null
+            localStorage.clear()
         },
 
         getNumeroCuenta(){

@@ -6,10 +6,12 @@ const app = createApp({
             clientData:undefined,
             loansInfo: [],
             amountRequested: undefined,
+            accounts: [],
             interestRateNewLoan: undefined,
             numberOfPayments: [],
             numberPaymentChosen: undefined,
             monthlyPayment: 0,
+            maxAmountLoan: undefined,
             mapInterestPayments: [],
             typeLoan: [],
             typeLoanChosen: undefined,
@@ -27,7 +29,8 @@ const app = createApp({
             axios.get('http://localhost:8080/api/clients/current/').then(element =>{
                 this.clientData = element;
                 this.monthlyPayment =0;
-                console.log( this.clientData)
+                console.log(this.clientData)
+                this.getAvailableAccounts()
             })
         },
 
@@ -56,6 +59,11 @@ const app = createApp({
             // console.log(this.mapInterestPayments.size)
         },
 
+        getAvailableAccounts(){
+            this.accounts = this.clientData.data.accounts
+            console.log(this.accounts)
+        },
+
         getTypeLoans(){
         this.loansInfo.forEach(element =>{
                 this.typeLoan.push(element.name)
@@ -66,9 +74,9 @@ const app = createApp({
             for(let i =0; i < this.loansInfo.length;i++){
                 if(this.loansInfo[i].name === this.typeLoanChosen){
                     this.numberOfPayments = this.loansInfo[i].payments
+                    this.maxAmountLoan = this.loansInfo[i].maxAmount
                 } 
             }
-
         },
         
             submitLoanRequest(){
@@ -79,11 +87,11 @@ const app = createApp({
                         text: 'Negative numbers or 0 value are not allowed',
                     })
                 }else{
-                    // console.log(this.amountRequested)
-                    // console.log(this.numberPaymentChosen)
-                    // console.log(this.typeLoanChosen)
-                    // console.log(this.interestRateNewLoan)
-                    // console.log(this.accountDestination)
+                    console.log(this.amountRequested)
+                    console.log(this.numberPaymentChosen)
+                    console.log(this.typeLoanChosen)
+                    console.log(this.interestRateNewLoan)
+                    console.log(this.accountDestination)
                     
                     let amountToTransfer = this.amountRequested*(1 +(this.interestRateNewLoan/100))
 

@@ -53,7 +53,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Number of Payments</label>
-                        <select class="form-select" aria-label="Default select example" v-model="numberPaymentChosen">
+                        <select class="form-select" aria-label="Default select example" v-model="numberPaymentChosen" v-on:click="loanSimulation">
                             <option selected>Open this select menu</option>
                             <option v-bind:value="payment" v-for="payment of numberOfPayments">{{payment}}</option>
                         </select>
@@ -61,7 +61,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Account Destination</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="accountDestination" v-on:click="loanSimulation">
+                        <select class="form-select" aria-label="Default select example" v-model="accountDestination">
+                            <option selected>Open this select menu</option>
+                            <option v-bind:value="account.number" v-for="account of accounts">{{account.number}}</option>
+                        </select>
                         <div id="emailHelp" class="form-text">Please add the account destination</div>
                     </div>
                     <button type="button" class="btn btn-primary" v-on:click="submitLoanRequest">Submit</button>
@@ -70,6 +73,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Loan Simulator</h4>
                         <h5 class="card-subtitle mb-2 text-body-secondary">Your Loan with the conditions chosen</h5>
+                        <h6>Max Amount:<h5>${{maxAmountLoan}}</h5></h6>
                         <h6>Amount:<h5>${{amountRequested}}</h5></h6>
                         <h6>Interest Rate:<h5>% {{interestRateNewLoan}}</h5></h6>
                         <h6># of Payments:<h5>{{numberPaymentChosen}}</h5></h6>

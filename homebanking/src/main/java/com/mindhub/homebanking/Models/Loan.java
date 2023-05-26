@@ -20,6 +20,7 @@ public class Loan {
     private String name;
     private double maxAmount;
     private double interest;
+
     private double [][] listInst;
 
     @ElementCollection

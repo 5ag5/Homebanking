@@ -9,6 +9,7 @@ import com.mindhub.homebanking.Models.TypeAccount;
 import com.mindhub.homebanking.Repositories.AccountRepository;
 import com.mindhub.homebanking.Repositories.ClientRepository;
 import com.mindhub.homebanking.Service.AccountService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +44,7 @@ public class AccountServiceImplements implements AccountService {
     @Override
     public AccountDTO getAccount(Long id) {
         return accountRepository.findById(id).map(account -> new AccountDTO(account)).orElse(null);
+
     }
 
     @Override

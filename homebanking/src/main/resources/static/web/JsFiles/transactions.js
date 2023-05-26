@@ -6,7 +6,9 @@ const app = createApp({
             client: undefined,
             accounts: [],
             destinationType: undefined,
-            accountNumberOrigin:undefined,
+            accountNumberOrigin:0,
+            balanceAccount:0,
+            filterAccounts: [],
             description: undefined,
             accountNumberDestination: undefined,
             amountTransfer: undefined
@@ -24,7 +26,13 @@ const app = createApp({
                 this.accounts = element.data.accounts
                 console.log(this.accounts)
                 console.log(this.amountTransfer)
+                this.getBalanceAccount()
             })
+        },
+
+        filterAccountsMethod(){
+            this.filterAccounts = this.accounts.filter(element => element.number !== this.accountNumberOrigin)
+            console.log(this.filterAccounts)
         },
         
         transferTransactions(){
@@ -60,6 +68,15 @@ const app = createApp({
             }   
         },
 
+        getBalanceAccount(){
+            this.accounts.forEach(elements =>{
+
+                if(elements.number === this.accountNumberOrigin){
+                    return this.balanceAccount =  Math.round(elements.balance*100)/100
+                }
+            })
+        },
+
         logOut(){
             axios.post('/api/logout').then(element =>{
                 console.log("LogOut Correct")
@@ -72,6 +89,10 @@ const app = createApp({
                 })
             })
         }
+
+    },
+
+    computed:{
 
     },
 })

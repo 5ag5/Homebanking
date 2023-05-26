@@ -24,13 +24,13 @@ public class CardDTO {
 
     public CardDTO(Card card) {
         this.id = card.getId();
-        this.cardHolder = card.getCardHolder();;
-        this.type = card.getType();;
-        this.cardColor = card.getColor();;
-        this.number = card.getNumber();;
-        this.cvv = card.getCvv();;
-        this.thruDate = card.getThruDate();;
-        this.fromDate = card.getFromDate();;
+        this.cardHolder = card.getCardHolder();
+        this.type = card.getType();
+        this.cardColor = card.getColor();
+        this.number = card.getNumber();
+        this.cvv = card.getCvv();
+        this.thruDate = card.getThruDate();
+        this.fromDate = card.getFromDate();
         this.status = card.isStatus();
     }
 
